@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+    public GameObject player;
+
     public List<GameObject> rootRooms;
     public List<GameObject> roomPrefabs;
 
     public int numRooms = 15;
     private static int MAX_ATTEMPTS = 100;
+
 
     private List<GameObject> placedRooms = new List<GameObject>();
     private List<Door> frontier = new List<Door>();
@@ -29,7 +33,21 @@ public class LevelGenerator : MonoBehaviour
 
         foreach(Door door in frontier)
         {
-            door.SealDoor();
+            door.SetSealed();
+        }
+
+        PlacePlayer();
+    }
+
+    private void PlacePlayer()
+    {
+        GameObject lastRoom = placedRooms.Last();
+        Vector3 roomCenter = lastRoom.GetComponent<Collider>().bounds.center;
+        player.transform.position = roomCenter;
+
+        for (int i = 0; i < placedRooms.Count - 1; i++)
+        {
+            placedRooms[i].SetActive(false);
         }
     }
 
@@ -57,6 +75,9 @@ public class LevelGenerator : MonoBehaviour
         }
         instantiatedRoom.GetComponent<EnemySpawner>().SpawnPosition = instantiatedRoom.transform;
         RegisterNewRoom(instantiatedRoom);
+
+        selectedFrontierDoor.pairedDoor = selectedRoomDoor;
+        selectedRoomDoor.pairedDoor = selectedFrontierDoor;
 
         frontier.Remove(selectedFrontierDoor);
         frontier.Remove(selectedRoomDoor);
@@ -123,7 +144,9 @@ public class LevelGenerator : MonoBehaviour
         foreach (Door door in room.GetComponentsInChildren<Door>())
         {
             frontier.Add(door);
+            door.player = player;
         }
+        room.GetComponent<Room>().OnCreation();
     }
 
     private T RandomFrom<T>(List<T> list)

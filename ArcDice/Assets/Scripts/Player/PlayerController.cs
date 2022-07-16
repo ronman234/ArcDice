@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
         float horizontalMovement = playerInput.Default.HorizontalMove.ReadValue<float>();
         float verticalMovement = playerInput.Default.VerticalMove.ReadValue<float>();
-        Debug.Log("Hor: " + horizontalMovement + " Vert: " + verticalMovement);
+//        Debug.Log("Hor: " + horizontalMovement + " Vert: " + verticalMovement);
         movement = new Vector3(horizontalMovement, 0f, verticalMovement);
         Vector3 currentPosition = rigidBody.transform.position;
         velocity = movement * moveSpeed;
