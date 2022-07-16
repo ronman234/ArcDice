@@ -55,7 +55,7 @@ public class LevelGenerator : MonoBehaviour
         {
             //Debug.Log("No collision");
         }
-
+        instantiatedRoom.GetComponent<EnemySpawner>().SpawnPosition = instantiatedRoom.transform;
         RegisterNewRoom(instantiatedRoom);
 
         frontier.Remove(selectedFrontierDoor);
@@ -113,12 +113,13 @@ public class LevelGenerator : MonoBehaviour
         GameObject rootRoom = Instantiate(RandomFrom(rootRooms));
         int rotation = Random.Range(0, 4) * 90;
         rootRoom.transform.Rotate(Vector3.up, rotation);
+        rootRoom.GetComponent<EnemySpawner>().SpawnPosition = transform;
         RegisterNewRoom(rootRoom);
     }
 
     private void RegisterNewRoom(GameObject room)
     {
-        placedRooms.Add(room);
+        placedRooms.Add(room);        
         foreach (Door door in room.GetComponentsInChildren<Door>())
         {
             frontier.Add(door);
