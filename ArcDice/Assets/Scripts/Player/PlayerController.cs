@@ -15,11 +15,13 @@ public class PlayerController : MonoBehaviour
     //private float verticalMovement;
     private Vector3 movement;
     private Vector3 velocity;
+    private Animator animator;
 
     private void Awake()
     {
         rigidBody = GetComponentInChildren<Rigidbody>();
         playerInput = new PlayerControls();
+        animator = GetComponentInChildren<Animator>();
     }
     private void OnEnable()
     {
@@ -39,6 +41,16 @@ public class PlayerController : MonoBehaviour
         movement = new Vector3(horizontalMovement, 0f, verticalMovement);
         Vector3 currentPosition = rigidBody.transform.position;
         velocity = movement * moveSpeed;
+
+        bool isIdle = horizontalMovement == 0 && verticalMovement == 0;
+        if (isIdle)
+        {
+            animator.SetFloat("Vertical", 0);
+        }
+        else
+        {
+            animator.SetFloat("Vertical", playerInput.Default.VerticalMove.ReadValue<float>());
+        }
     }
 
     private void FixedUpdate()
