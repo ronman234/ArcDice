@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+    public GameObject playerPrefab;
+
     public List<GameObject> rootRooms;
     public List<GameObject> roomPrefabs;
 
     public int numRooms = 15;
     private static int MAX_ATTEMPTS = 100;
+
 
     private List<GameObject> placedRooms = new List<GameObject>();
     private List<Door> frontier = new List<Door>();
@@ -31,6 +35,15 @@ public class LevelGenerator : MonoBehaviour
         {
             door.SealDoor();
         }
+
+        PlacePlayer();
+    }
+
+    private void PlacePlayer()
+    {
+        GameObject lastRoom = placedRooms.Last();
+        Vector3 roomCenter = lastRoom.GetComponent<Collider>().bounds.center;
+        Instantiate(playerPrefab, roomCenter, Quaternion.identity);
     }
 
     private void TryAddingRoom()
