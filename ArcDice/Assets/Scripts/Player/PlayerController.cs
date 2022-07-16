@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
         movement = new Vector3(horizontalMovement, 0f, verticalMovement);
         Vector3 currentPosition = rigidBody.transform.position;
         velocity = movement * moveSpeed;
+        velocity.y = rigidBody.velocity.y;
     }
 
     private void FixedUpdate()

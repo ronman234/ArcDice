@@ -6,6 +6,7 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     public GameObject player;
+    public float playerYOffset;
 
     public List<GameObject> rootRooms;
     public List<GameObject> roomPrefabs;
@@ -37,6 +38,11 @@ public class LevelGenerator : MonoBehaviour
         }
 
         PlacePlayer();
+        
+        for (int i = 0; i < placedRooms.Count - 1; i++)
+        {
+            placedRooms[i].SetActive(false);
+        }
     }
 
     private void PlacePlayer()
@@ -44,11 +50,7 @@ public class LevelGenerator : MonoBehaviour
         GameObject lastRoom = placedRooms.Last();
         Vector3 roomCenter = lastRoom.GetComponent<Collider>().bounds.center;
         player.transform.position = roomCenter;
-
-        for (int i = 0; i < placedRooms.Count - 1; i++)
-        {
-            placedRooms[i].SetActive(false);
-        }
+        player.transform.Translate(0, playerYOffset, 0);
     }
 
     private void TryAddingRoom()
