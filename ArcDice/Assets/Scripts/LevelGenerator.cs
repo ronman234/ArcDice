@@ -6,9 +6,17 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     public GameObject player;
+    public float playerYOffset;
 
+    [Tooltip("Exactly one of these rooms will be placed, and it will be the first room placed.")]
     public List<GameObject> rootRooms;
-    public List<GameObject> roomPrefabs;
+    [Tooltip("Each of these rooms may appear at most once.")]
+    public List<GameObject> specialRooms;
+    [Tooltip("These rooms can appear anywhere, any number of times.")]
+    public List<GameObject> basicRooms;
+
+    [Tooltip("The chance that a special room will be generated in place of a basic room.")]
+    public float specialRoomProbability;
 
     public int numRooms = 15;
     private static int MAX_ATTEMPTS = 100;
@@ -28,15 +36,38 @@ public class LevelGenerator : MonoBehaviour
         while (placedRooms.Count < numRooms && attempts < MAX_ATTEMPTS && frontier.Count > 0)
         {
             attempts++;
-            TryAddingRoom();
+            GameObject selectedRoomPrefab = GetRandomRoom();
+            if (TryAddingRoom(selectedRoomPrefab) && specialRooms.Contains(selectedRoomPrefab))
+            {
+                Debug.Log("Special room placed");
+                specialRooms.Remove(selectedRoomPrefab);
+            }
         }
 
-        foreach(Door door in frontier)
+        foreach (Door door in frontier)
         {
             door.SetSealed();
         }
 
         PlacePlayer();
+        
+        for (int i = 0; i < placedRooms.Count - 1; i++)
+        {
+            placedRooms[i].SetActive(false);
+        }
+    }
+
+    private GameObject GetRandomRoom()
+    {
+        float f = Random.value;
+        if (f < specialRoomProbability && specialRooms.Count > 0)
+        {
+            return RandomFrom(specialRooms);
+        }
+        else
+        {
+            return RandomFrom(basicRooms);
+        }
     }
 
     private void PlacePlayer()
@@ -44,20 +75,16 @@ public class LevelGenerator : MonoBehaviour
         GameObject lastRoom = placedRooms.Last();
         Vector3 roomCenter = lastRoom.GetComponent<Collider>().bounds.center;
         player.transform.position = roomCenter;
-
-        for (int i = 0; i < placedRooms.Count - 1; i++)
-        {
-            placedRooms[i].SetActive(false);
-        }
+        player.transform.Translate(0, playerYOffset, 0);
     }
 
-    private void TryAddingRoom()
+    private bool TryAddingRoom(GameObject roomPrefab)
     {
         Door selectedFrontierDoor = RandomFrom(frontier);
 
-        GameObject selectedRoomPrefab = RandomFrom(roomPrefabs);
+        //GameObject selectedRoomPrefab = RandomFrom(basicRooms);
 
-        GameObject instantiatedRoom = Instantiate(selectedRoomPrefab);
+        GameObject instantiatedRoom = Instantiate(roomPrefab);
 
         Door selectedRoomDoor = RandomFrom(instantiatedRoom.GetComponentsInChildren<Door>());
 
@@ -66,7 +93,7 @@ public class LevelGenerator : MonoBehaviour
         if (CollidesWithExistingRooms(instantiatedRoom))
         {
             Destroy(instantiatedRoom);
-            return;
+            return false;
             //Debug.LogWarning("Collision detected");
         }
         else
@@ -81,6 +108,8 @@ public class LevelGenerator : MonoBehaviour
 
         frontier.Remove(selectedFrontierDoor);
         frontier.Remove(selectedRoomDoor);
+
+        return true;
     }
 
     private bool CollidesWithExistingRooms(GameObject newRoom)

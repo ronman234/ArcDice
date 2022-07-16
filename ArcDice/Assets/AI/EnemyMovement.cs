@@ -32,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
     private IEnumerator FollowTarget()
     {
         WaitForSeconds Wait = new WaitForSeconds(UpdateRate);
-        Debug.Log("Move dammit");
+    //    Debug.Log("Move dammit");
         while (gameObject.activeSelf)
         {
             //Agent.SetDestination(Player.transform.position);

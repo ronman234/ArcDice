@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
         Vector3 currentPosition = rigidBody.transform.position;
         velocity = movement * moveSpeed;
 
+
         bool isIdle = horizontalMovement == 0 && verticalMovement == 0;
         if (isIdle)
         {
@@ -51,6 +52,9 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetFloat("Vertical", playerInput.Default.VerticalMove.ReadValue<float>());
         }
+
+        velocity.y = rigidBody.velocity.y;
+
     }
 
     private void FixedUpdate()

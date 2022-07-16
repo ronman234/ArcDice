@@ -153,10 +153,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1120448385}
+  playerYOffset: -2.5
   rootRooms:
   - {fileID: 2146187012878677770, guid: 6bd8c5fb0512b450b855d65d13b56c4c, type: 3}
-  roomPrefabs:
+  specialRooms:
   - {fileID: 2146187012878677770, guid: 6bd8c5fb0512b450b855d65d13b56c4c, type: 3}
+  - {fileID: 2146187012878677770, guid: 6bd8c5fb0512b450b855d65d13b56c4c, type: 3}
+  - {fileID: 2146187012878677770, guid: 6bd8c5fb0512b450b855d65d13b56c4c, type: 3}
+  basicRooms:
+  - {fileID: 2146187012878677770, guid: 6bd8c5fb0512b450b855d65d13b56c4c, type: 3}
+  specialRoomProbability: 0.1
   numRooms: 15
 --- !u!4 &84265427
 Transform:
