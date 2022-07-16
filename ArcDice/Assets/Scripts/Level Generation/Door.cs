@@ -44,10 +44,8 @@ public class Door : MonoBehaviour
         if (ClosedState.activeSelf)
         {
             SetOpen();
-            pairedDoor.SetOpen();
+            pairedDoor.gameObject.SetActive(false);
             pairedDoor.OwningRoom.SetActive(true);
-            pairedDoor.OwningRoom.GetComponent<EnemySpawner>().SpawnPosition = pairedDoor.OwningRoom.transform;
-            pairedDoor.OwningRoom.GetComponent<EnemySpawner>().SpawnCall();
         }
     }
 
