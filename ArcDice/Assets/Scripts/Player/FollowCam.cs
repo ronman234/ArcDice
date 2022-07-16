@@ -7,6 +7,7 @@ public class FollowCam : MonoBehaviour
     public PlayerController followTarget;
     public float followDistance;
 
+
     private Camera cam;
 
     private void Awake()
@@ -17,7 +18,9 @@ public class FollowCam : MonoBehaviour
     private void Update()
     {
         Vector3 currentPosition = transform.position;
-       // transform.position = new Vector3(followTarget.transform.position.x - currentPosition, 0, followTarget.transform.position.z);
+        Vector3 newPosition = new Vector3(followTarget.transform.position.x, followTarget.transform.position.y + 10, followTarget.transform.position.z - followDistance);
+        transform.position = newPosition;
+        transform.rotation = Quaternion.Euler(45,0,0);
     }
 
 
