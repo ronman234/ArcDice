@@ -17,10 +17,15 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        //Player = GameObject.FindGameObjectWithTag("Player").transform;
+        
+        //Debug.Log(SpawnPosition.position);
+    }
+
+    public void SpawnCall()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player").transform;
         SpawnPosition = transform;
         StartCoroutine(StartPool());
-        //Debug.Log(SpawnPosition.position);
     }
 
     private IEnumerator StartPool()

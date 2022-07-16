@@ -29,7 +29,7 @@ public class ObjectPool
         for (int i = 0; i < Size; i++)
         {
             
-            PoolableObject poolableObject = GameObject.Instantiate(Prefab, Vector3.zero, Quaternion.identity, SpawnPosition);
+            PoolableObject poolableObject = GameObject.Instantiate(Prefab, SpawnPosition.localPosition, Quaternion.identity, SpawnPosition);
             poolableObject.Parent = this;
             poolableObject.gameObject.SetActive(false); // PoolableObject handles re-adding the object to the AvailableObjects
         }
