@@ -47,10 +47,12 @@ public class PlayerController : MonoBehaviour
         if (isIdle)
         {
             animator.SetFloat("Vertical", 0);
+            animator.SetFloat("Horizontal", 0);
         }
         else
         {
             animator.SetFloat("Vertical", playerInput.Default.VerticalMove.ReadValue<float>());
+            animator.SetFloat("Horizontal", playerInput.Default.HorizontalMove.ReadValue<float>());
         }
 
         velocity.y = rigidBody.velocity.y;
