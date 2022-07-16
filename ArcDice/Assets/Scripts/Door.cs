@@ -12,17 +12,56 @@ public class Door : MonoBehaviour
     public GameObject OwningRoom;
     [HideInInspector]
     public Door pairedDoor;
+    [HideInInspector]
+    public GameObject player;
+
+    private Collider[] playerColliders;
+    private Collider[] selfColliders;
+
+    private bool wasColliding = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerColliders = player.GetComponentsInChildren<Collider>();
+        selfColliders = GetComponentsInChildren<Collider>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        bool isColliding = CollidesWithPlayer();
+        if (!wasColliding && isColliding)
+        {
+            HandleCollision();
+        }
+        wasColliding = isColliding;
+    }
+
+    void HandleCollision()
+    {
+        if (ClosedState.activeSelf)
+        {
+            SetOpen();
+            pairedDoor.SetOpen();
+            pairedDoor.OwningRoom.SetActive(true);
+        }
+    }
+
+    private bool CollidesWithPlayer()
+    {
+        foreach (Collider pc in playerColliders)
+        {
+            foreach (Collider sc in selfColliders)
+            {
+                if (pc.bounds.Intersects(sc.bounds))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void SetClosed()

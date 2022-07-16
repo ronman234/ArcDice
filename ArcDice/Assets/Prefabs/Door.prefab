@@ -107,6 +107,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1515762691946810855}
   - component: {fileID: 5721165579622727348}
+  - component: {fileID: 4604645000363268980}
+  - component: {fileID: 1420559168202155135}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -147,6 +149,37 @@ MonoBehaviour:
   ClosedState: {fileID: 7605947800782350068}
   OpenState: {fileID: 1422395054352677587}
   SealedState: {fileID: 1424959846786257790}
+  OwningRoom: {fileID: 0}
+  pairedDoor: {fileID: 0}
+--- !u!54 &4604645000363268980
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283645933886493796}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1420559168202155135
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283645933886493796}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.0955815, y: 5.986957, z: 0.55595076}
+  m_Center: {x: -0.03429532, y: 3.028146, z: 0.22202462}
 --- !u!1 &567215846120401511
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +272,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 567215846120401511}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

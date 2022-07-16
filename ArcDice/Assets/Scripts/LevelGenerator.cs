@@ -44,6 +44,11 @@ public class LevelGenerator : MonoBehaviour
         GameObject lastRoom = placedRooms.Last();
         Vector3 roomCenter = lastRoom.GetComponent<Collider>().bounds.center;
         player.transform.position = roomCenter;
+
+        for (int i = 0; i < placedRooms.Count - 1; i++)
+        {
+            placedRooms[i].SetActive(false);
+        }
     }
 
     private void TryAddingRoom()
@@ -138,6 +143,7 @@ public class LevelGenerator : MonoBehaviour
         foreach (Door door in room.GetComponentsInChildren<Door>())
         {
             frontier.Add(door);
+            door.player = player;
         }
         room.GetComponent<Room>().OnCreation();
     }
