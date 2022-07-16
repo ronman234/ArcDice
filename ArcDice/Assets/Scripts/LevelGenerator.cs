@@ -33,7 +33,7 @@ public class LevelGenerator : MonoBehaviour
 
         foreach(Door door in frontier)
         {
-            door.SealDoor();
+            door.SetSealed();
         }
 
         PlacePlayer();
@@ -70,6 +70,9 @@ public class LevelGenerator : MonoBehaviour
         }
 
         RegisterNewRoom(instantiatedRoom);
+
+        selectedFrontierDoor.pairedDoor = selectedRoomDoor;
+        selectedRoomDoor.pairedDoor = selectedFrontierDoor;
 
         frontier.Remove(selectedFrontierDoor);
         frontier.Remove(selectedRoomDoor);
@@ -136,6 +139,7 @@ public class LevelGenerator : MonoBehaviour
         {
             frontier.Add(door);
         }
+        room.GetComponent<Room>().OnCreation();
     }
 
     private T RandomFrom<T>(List<T> list)

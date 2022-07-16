@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public GameObject ClosedState;
+    public GameObject OpenState;
+    public GameObject SealedState;
+
+    [HideInInspector]
+    public GameObject OwningRoom;
+    [HideInInspector]
+    public Door pairedDoor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +25,24 @@ public class Door : MonoBehaviour
         
     }
 
-    public void SealDoor()
+    public void SetClosed()
     {
-        foreach (Transform child in transform)
-        {
-            child.gameObject.SetActive(!child.gameObject.activeSelf);
-        }
+        ClosedState.SetActive(true);
+        OpenState.SetActive(false);
+        SealedState.SetActive(false);
+    }
+
+    public void SetOpen()
+    {
+        ClosedState.SetActive(false);
+        OpenState.SetActive(true);
+        SealedState.SetActive(false);
+    }
+
+    public void SetSealed()
+    {
+        ClosedState.SetActive(false);
+        OpenState.SetActive(false);
+        SealedState.SetActive(true);
     }
 }
