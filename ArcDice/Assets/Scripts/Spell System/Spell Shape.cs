@@ -5,10 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new - Spell Shape", menuName = "Spells/Spell Shape", order = 10)]
 public class SpellShape : ScriptableObject
 {
+    public string animationTriggerName;
+
     public float range;
     public float spreadAngle;
     public float angleBetweenRays;
-    public float heightAbovePlayerPivot;
+    public float heightAbovePlayerPivot = 0.1f;
 
     public IEnumerable<Enemy> GetEnemiesHit(GameObject player)
     {
@@ -27,8 +29,9 @@ public class SpellShape : ScriptableObject
     public IEnumerable<Vector3> RaysToCast(GameObject player)
     {
         Vector3 center = player.transform.right;
+        yield return center;
 
-        for (float angle = 0; angle <= spreadAngle / 2; angle += spreadAngle)
+        for (float angle = 0; angle < spreadAngle / 2; angle += angleBetweenRays)
         {
             Quaternion rot = Quaternion.AngleAxis(angle, Vector3.up);
             yield return rot * center;
