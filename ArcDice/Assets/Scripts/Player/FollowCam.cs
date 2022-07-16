@@ -5,8 +5,9 @@ using UnityEngine;
 public class FollowCam : MonoBehaviour
 {
     public PlayerController followTarget;
-    public float followDistance;
-
+    public float followDistanceZ = 3.5f;
+    public float followDistanceY = 15f;
+    public float yaw = 70;
 
     private Camera cam;
 
@@ -18,9 +19,9 @@ public class FollowCam : MonoBehaviour
     private void Update()
     {
         Vector3 currentPosition = transform.position;
-        Vector3 newPosition = new Vector3(followTarget.transform.position.x, followTarget.transform.position.y + 10, followTarget.transform.position.z - followDistance);
+        Vector3 newPosition = new Vector3(followTarget.transform.position.x, followTarget.transform.position.y + followDistanceY, followTarget.transform.position.z - followDistanceZ);
         transform.position = newPosition;
-        transform.rotation = Quaternion.Euler(45,0,0);
+        transform.rotation = Quaternion.Euler(yaw,0,0);
     }
 
 
