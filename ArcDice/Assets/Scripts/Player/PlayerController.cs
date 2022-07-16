@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+
         float horizontalMovement = playerInput.Default.HorizontalMove.ReadValue<float>();
         float verticalMovement = playerInput.Default.VerticalMove.ReadValue<float>();
         Debug.Log("Hor: " + horizontalMovement + " Vert: " + verticalMovement);
@@ -42,18 +43,17 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Move player
         rigidBody.velocity = velocity;
         
+        
 
+        // Rotate towards mouse position
         Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
-
         Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Mouse.current.position.ReadValue());
-
         float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
-
         Quaternion currentRot = rigidBody.transform.rotation;
-
-        rigidBody.transform.rotation = Quaternion.Lerp(currentRot, Quaternion.Euler(new Vector3(0f, -angle - 90, 0f)), 0.5f);
+        rigidBody.transform.rotation = Quaternion.Lerp(currentRot, Quaternion.Euler(new Vector3(0f, -angle+180, 0f)), 0.5f);
     }
 
     float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
