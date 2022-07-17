@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public bool tgm;
+
     [SerializeField]
     private GameObject pauseMenu;
 
@@ -41,12 +43,15 @@ public class PlayerManager : MonoBehaviour
 
     private void OnDeath()
     {
-        playerController.DoDeath();
-        collider.enabled = false;
-        gameObject.GetComponent<Rigidbody>().freezeRotation = true;
-        Physics.IgnoreLayerCollision(6, 7);
-        playerController.enabled = false;
-        //TODO Reset
+        if (!tgm)
+        {
+            playerController.DoDeath();
+            collider.enabled = false;
+            gameObject.GetComponent<Rigidbody>().freezeRotation = true;
+            Physics.IgnoreLayerCollision(6, 7);
+            playerController.enabled = false;
+            //TODO Reset
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
