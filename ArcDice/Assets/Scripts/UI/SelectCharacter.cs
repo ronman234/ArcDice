@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SelectCharacter : MonoBehaviour
 {
@@ -10,7 +11,9 @@ public class SelectCharacter : MonoBehaviour
 
     private void OnEnable()
     {
-        characterArray[0].SetActive(true);
+        counter = PlayerPrefs.GetInt("CharacterSelected");
+        characterArray[counter].SetActive(true);
+        //counter = 0;
     }
     public void Left()
     {
@@ -35,5 +38,13 @@ public class SelectCharacter : MonoBehaviour
         }
         
         characterArray[counter].SetActive(true);
+    }
+
+    public void StartGame()
+    {
+        //characterArray[PlayerPrefs.GetInt("CharacterSelected")].SetActive(false);
+        PlayerPrefs.SetInt("CharacterSelected", counter);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("PlayerTest", LoadSceneMode.Single);
     }
 }

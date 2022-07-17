@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject pauseMenu;
+
+    public GameObject[] characterSelection;
     public float maxPlayerHealth;
     [SerializeField]
     private float playerHealth;
@@ -14,6 +18,8 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+        int character = PlayerPrefs.GetInt("CharacterSelected");
+        characterSelection[character].SetActive(true);
         playerHealth = maxPlayerHealth;
         playerController = GetComponent<PlayerController>();
         collider = GetComponent<Collider>();
@@ -24,6 +30,7 @@ public class PlayerManager : MonoBehaviour
         if(playerHealth <= 0)
         {
             OnDeath();
+            return;
         }
     }
 
