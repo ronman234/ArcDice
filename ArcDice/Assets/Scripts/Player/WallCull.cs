@@ -24,6 +24,13 @@ public class WallCull : MonoBehaviour
         cameraObj = Camera.main.gameObject;
         creature = gameObject;
     }
+    private void OnDestroy()
+    {
+        if (isActive)
+        {
+            activeCreatures -= 1;
+        }
+    }
 
     // Update is called once per frame
     void FixedUpdate()
