@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Agent: {fileID: 1309172057056289038}
-  EnemyScriptableObject: {fileID: 11400000, guid: 7d7544c03115b184a93181ddffe49673, type: 2}
+  EnemyScriptableObject: {fileID: 11400000, guid: 4cc3b265049620f478bf3befb39e7f29, type: 2}
   Health: 100
   enemyMovement: {fileID: 0}
   Animator: {fileID: 0}

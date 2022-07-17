@@ -6,7 +6,7 @@ using UnityEngine;
 public class Spell : MonoBehaviour
 {
     public SpellElement element;
-    public string spellElement => element.name;
+    public string spellElement => element.elementName;
     public SpellShape shape;
     public PlayerController playerController;
     public PlayerManager playerManager;
@@ -38,6 +38,7 @@ public class Spell : MonoBehaviour
                     enemy.TakeDamage(baseDamage * 0.5f);
                     break;
                 case "wind":
+                    Debug.Log("WIND");
                     enemy.GetComponentInChildren<Rigidbody>().AddForce(((enemy.transform.position - playerController.transform.position).normalized * playerManager.playerLevel + Vector3.up) * 10, ForceMode.Impulse);
                     break;
                 case "holy":
