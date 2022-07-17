@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
     private void DoAttack(InputAction.CallbackContext obj)
     {
         animator.SetTrigger(GetComponent<Spell>().shape.animationTriggerName);
-        GetComponent<Spell>().CastSpell();        
+        GetComponent<Spell>().CastSpell();
         //animator.SetTrigger(GetComponent<Spell>().shape.animationTriggerName);
         
     }
