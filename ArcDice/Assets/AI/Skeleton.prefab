@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -9091546359614334504}
   - component: {fileID: 8419723843400658652}
   - component: {fileID: 2741377474353623831}
-  - component: {fileID: 3122887935746668296}
+  - component: {fileID: 5578857781151425288}
   m_Layer: 7
   m_Name: Skeleton
   m_TagString: Enemy
@@ -141,22 +141,19 @@ CapsuleCollider:
   m_Height: 1.8298783
   m_Direction: 1
   m_Center: {x: 0.011112094, y: 0.41493917, z: 0}
---- !u!54 &3122887935746668296
-Rigidbody:
+--- !u!114 &5578857781151425288
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5243577000187079487}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed5f0c7013e016046bb803fddfc5fc85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xray: {fileID: 2100000, guid: baebccd2d1f15b14bba02c04a13bb896, type: 2}
 --- !u!1001 &4897011492921353146
 PrefabInstance:
   m_ObjectHideFlags: 0
