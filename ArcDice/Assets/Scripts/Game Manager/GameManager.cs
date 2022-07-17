@@ -8,17 +8,37 @@ public class GameManager : MonoBehaviour
     public static string generatorLevel = "PlayerTest 1";
     public static string uiLevel = "UI";
 
+    public int numberOfRooms;
+
     public LevelGenerator levelGenerator;
     public PlayerManager playerManager;
 
+    public int currentPlayerLevel = 1;
+
+
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        int instancesInScene = FindObjectsOfType<GameManager>().Length;
+
+        if (instancesInScene > 1)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
+        
+    }
+
+    public void UpdatePlayerLevel()
+    {
+        currentPlayerLevel++;
     }
 
     public void LoadScene(string scene)
     {
-        levelGenerator.numRooms = 5 * playerManager.playerLevel / 2;
         SceneManager.LoadScene(scene, LoadSceneMode.Single);
     }
 }

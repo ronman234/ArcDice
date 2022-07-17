@@ -30,16 +30,18 @@ public class LevelGenerator : MonoBehaviour
     // Start is called before the first frame update
 
     public PlayerManager playerManager;
+    public GameManager gameManager;
 
     private void Awake()
     {
         playerManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
     void Start()
     {
         PlaceRootRoom();
 
-        numRooms = 5 + playerManager.playerLevel * 2;
+        numRooms = 5 * gameManager.currentPlayerLevel;
 
         int attempts = 0;
         while (placedRooms.Count < numRooms && attempts < MAX_ATTEMPTS && frontier.Count > 0)
