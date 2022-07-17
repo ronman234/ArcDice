@@ -109,6 +109,7 @@ MonoBehaviour:
   Animator: {fileID: 0}
   collision: {fileID: 2741377474353623831}
   rb: {fileID: 0}
+  isBoss: 1
 --- !u!95 &8419723843400658652
 Animator:
   serializedVersion: 4
