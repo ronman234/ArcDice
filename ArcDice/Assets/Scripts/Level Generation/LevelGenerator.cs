@@ -18,7 +18,7 @@ public class LevelGenerator : MonoBehaviour
     [Tooltip("The chance that a special room will be generated in place of a basic room.")]
     public float specialRoomProbability;
 
-    public int numRooms = 15;
+    public int numRooms;
     private static int MAX_ATTEMPTS = 100;
 
 
@@ -28,9 +28,18 @@ public class LevelGenerator : MonoBehaviour
     //public bool generateRoom = false;
 
     // Start is called before the first frame update
+
+    public PlayerManager playerManager;
+
+    private void Awake()
+    {
+        playerManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
+    }
     void Start()
     {
         PlaceRootRoom();
+
+        numRooms = 5 + playerManager.playerLevel * 2;
 
         int attempts = 0;
         while (placedRooms.Count < numRooms && attempts < MAX_ATTEMPTS && frontier.Count > 0)
