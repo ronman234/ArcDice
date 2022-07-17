@@ -22,7 +22,7 @@ public class Hatch : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Player");
-            gameManager.UpdatePlayerLevel();
+            //gameManager.UpdatePlayerLevel();
             gameManager.LoadScene(GameManager.generatorLevel);
         }
     }
