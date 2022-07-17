@@ -18,4 +18,5 @@ public class EnemyScriptableObject : ScriptableObject
     public float radius = 0.5f;
     public float Speed = 3f;
     public float StoppingDistance = 0.5f;
+    public bool Boss = false;
 }

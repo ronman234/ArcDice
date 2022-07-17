@@ -9,6 +9,9 @@ public class Enemy : PoolableObject
     public EnemyMovement enemyMovement;
     public Animator Animator;
     public Collider collision;
+    public Rigidbody rb;
+    public bool isBoss;
+    private GameObject Player;
 
     public virtual void OnEnable()
     {
@@ -17,6 +20,8 @@ public class Enemy : PoolableObject
         Animator = GetComponent<Animator>();
         enemyMovement = GetComponent<EnemyMovement>();
         collision = GetComponent<Collider>();
+        rb = GetComponent<Rigidbody>();
+        Player = enemyMovement.Player.gameObject;
     }
 
     public override void OnDisable()
@@ -38,6 +43,7 @@ public class Enemy : PoolableObject
         Agent.radius = EnemyScriptableObject.radius;
         Agent.speed = EnemyScriptableObject.Speed;
         Agent.stoppingDistance = EnemyScriptableObject.StoppingDistance;
+        isBoss = EnemyScriptableObject.Boss;
 
         Health = EnemyScriptableObject.Health;
     }
@@ -65,9 +71,10 @@ public class Enemy : PoolableObject
 
     private void OnDeath()
     {
-        
+        if(isBoss)
+            Player.GetComponent<PlayerManager>().playerLevel++;
         Animator.SetTrigger("Death");
-        
+        rb.freezeRotation = true;
         Destroy(gameObject, 4.0f);
         this.enabled = false;
     }

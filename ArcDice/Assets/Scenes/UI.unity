@@ -679,7 +679,7 @@ MonoBehaviour:
   - {fileID: 170492944}
   - {fileID: 486008610}
   - {fileID: 16504840}
-  GameLevel: PlayerTest1
+  GameLevel: PlayerTest
 --- !u!114 &224021440
 MonoBehaviour:
   m_ObjectHideFlags: 0
