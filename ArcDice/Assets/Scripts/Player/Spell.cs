@@ -63,6 +63,26 @@ public class Spell : MonoBehaviour
             {
                 var colorModule = ps.colorOverLifetime;
                 colorModule.color = element.colorGradient;
+
+                var mainModule = ps.main;
+                var shapeModule = ps.shape;
+                var speedModule = ps.velocityOverLifetime;
+
+
+                switch (shape.animationTriggerName)
+                {
+                    case "Bolt":
+                        break;
+                    case "Cone":
+                    case "Wave":
+                        mainModule.startLifetime = shape.range / speedModule.speedModifierMultiplier / 5;
+                        shapeModule.arc = shape.spreadAngle;
+                        break;
+                    case "Blade":
+                        shapeModule.length = shape.range;
+                        break;
+                }
+
                 ps.Play();
                 break;
             }
