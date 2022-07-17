@@ -1,11 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Spell : MonoBehaviour
 {
-    //public SpellElement element;
-    public string spellElement;
+    public SpellElement element;
+    public string spellElement => element.name;
     public SpellShape shape;
     public PlayerController playerController;
     public PlayerManager playerManager;
@@ -18,6 +19,7 @@ public class Spell : MonoBehaviour
 
     public void CastSpell()
     {
+        DisplayParticleEffect();
 
         baseDamage = shape.damgeModifier * playerManager.playerLevel * 2;
 
@@ -36,7 +38,7 @@ public class Spell : MonoBehaviour
                     enemy.TakeDamage(baseDamage * 0.5f);
                     break;
                 case "wind":
-                    enemy.GetComponentInChildren<Rigidbody>().AddForce(((enemy.transform.position - playerController.transform.position).normalized * playerManager.playerLevel + Vector3.up) * 100, ForceMode.Impulse);
+                    enemy.GetComponentInChildren<Rigidbody>().AddForce(((enemy.transform.position - playerController.transform.position).normalized * playerManager.playerLevel + Vector3.up) * 10, ForceMode.Impulse);
                     break;
                 case "holy":
                     
@@ -53,6 +55,20 @@ public class Spell : MonoBehaviour
         }
     }
 
+    private void DisplayParticleEffect()
+    {
+        foreach (ParticleSystem ps in gameObject.GetComponentsInChildren<ParticleSystem>())
+        {
+            if (ps.gameObject.name == shape.animationTriggerName)
+            {
+                var colorModule = ps.colorOverLifetime;
+                colorModule.color = element.colorGradient;
+                ps.Play();
+                break;
+            }
+        }
+    }
+
     public IEnumerator damageOverTime(Enemy enemy, float damage, float timer)
     {
         float currentTimer = timer;
@@ -62,7 +78,9 @@ public class Spell : MonoBehaviour
             enemy.TakeDamage(damage * Time.deltaTime / timer);
             yield return null;
         }
-    }public IEnumerator healOverTime(PlayerManager player, float heal, float timer)
+    }
+    
+    public IEnumerator healOverTime(PlayerManager player, float heal, float timer)
     {
         float currentTimer = timer;
         while (currentTimer > 0)
@@ -72,6 +90,7 @@ public class Spell : MonoBehaviour
             yield return null;
         }
     }
+
     public IEnumerator SlowMovement(Enemy enemy)
     {
         enemy.Agent.speed /= 2;

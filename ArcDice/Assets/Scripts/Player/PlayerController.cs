@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
 
     public List<SpellShape> spellShapes;
+    public List<SpellElement> spellElements;
 
     private PlayerControls playerInput;
     private Rigidbody rigidBody;
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
         //Create Spell
         Spell spell = gameObject.AddComponent<Spell>();
-        spell.spellElement = SpellCreator.RollElementType();
+        spell.element = SpellCreator.RollElementType(spellElements);
         spell.shape = SpellCreator.RollAttackType(spellShapes);
         spell.playerController = this;
         spell.playerManager = GetComponent<PlayerManager>();

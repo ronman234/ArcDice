@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1609,6 +1609,54 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 1054316344}
+    - target: {fileID: 1776552057501814841, guid: 1c552aae90d31b44487a08803508f563, type: 3}
+      propertyPath: spellShapes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776552057501814841, guid: 1c552aae90d31b44487a08803508f563, type: 3}
+      propertyPath: spellElements.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776552057501814841, guid: 1c552aae90d31b44487a08803508f563, type: 3}
+      propertyPath: spellShapes.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f4f3e76b46404f67997db6a6d5171d9, type: 2}
+    - target: {fileID: 1776552057501814841, guid: 1c552aae90d31b44487a08803508f563, type: 3}
+      propertyPath: spellShapes.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 10c8caa6ab0664010a7260a433005208, type: 2}
+    - target: {fileID: 1776552057501814841, guid: 1c552aae90d31b44487a08803508f563, type: 3}
+      propertyPath: spellShapes.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: d6370e3816bd34c5d9f2bf40926c5919, type: 2}
+    - target: {fileID: 1776552057501814841, guid: 1c552aae90d31b44487a08803508f563, type: 3}
+      propertyPath: spellShapes.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: f4c1bf863e7a4440db1f9f0ce39e8c35, type: 2}
+    - target: {fileID: 1776552057501814841, guid: 1c552aae90d31b44487a08803508f563, type: 3}
+      propertyPath: spellElements.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6520904630d0547b8af36529e39e7e94, type: 2}
+    - target: {fileID: 1776552057501814841, guid: 1c552aae90d31b44487a08803508f563, type: 3}
+      propertyPath: spellElements.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: ebcfd5b130ad64ea78219a8d3f54435d, type: 2}
+    - target: {fileID: 1776552057501814841, guid: 1c552aae90d31b44487a08803508f563, type: 3}
+      propertyPath: spellElements.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6fa78e1007f56426f84f7412a66737af, type: 2}
+    - target: {fileID: 1776552057501814841, guid: 1c552aae90d31b44487a08803508f563, type: 3}
+      propertyPath: spellElements.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 15d273cc96b374e78ba49610d23c87bf, type: 2}
+    - target: {fileID: 1776552057501814841, guid: 1c552aae90d31b44487a08803508f563, type: 3}
+      propertyPath: spellElements.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 866adc797016242b29be3bac5df80ca6, type: 2}
+    - target: {fileID: 1776552057501814841, guid: 1c552aae90d31b44487a08803508f563, type: 3}
+      propertyPath: spellElements.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 76391456a18334fa490011e03c586afd, type: 2}
     - target: {fileID: 1776552057501814843, guid: 1c552aae90d31b44487a08803508f563, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2762,6 +2810,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseObject: {fileID: 1997225907}
   playerManager: {fileID: 0}
+  MainMenu: UI1
 --- !u!1 &1591916871
 GameObject:
   m_ObjectHideFlags: 0

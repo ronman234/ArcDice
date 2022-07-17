@@ -7,4 +7,5 @@ using UnityEditor;
 public class SpellElement : ScriptableObject
 {
     public string elementName;
+    public Gradient colorGradient;
 }
