@@ -98,6 +98,11 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetTrigger("Heal");
     }
+
+    public void DoDeath()
+    {
+        animator.SetTrigger("Death");
+    }
     
     private void UpdateAttack(string AttackName)
     {
