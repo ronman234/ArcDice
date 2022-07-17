@@ -77,7 +77,7 @@ public class HUDManager : MonoBehaviour
 
     public void UpdateHealth()
     {
-        healthText.text = health + (int)playerManager.Health;
+        healthText.text = health + playerManager.Health;
     }
 
     private void Update()
