@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     [SerializeField]
     private string attackType = "Bolt";
+    [SerializeField]
+    private SpellShape spellShape;
+
 
 
     private void Awake()
@@ -90,7 +93,7 @@ public class PlayerController : MonoBehaviour
 
     private void DoAttack(InputAction.CallbackContext obj)
     {
-        GetComponent<Spell>().CastSpell();
+        GetComponent<Spell>().CastSpell(SpellCreator.RollElementType(), SpellCreator.RollAttackType(GetComponent<Spell>().spellShapes));
         animator.SetTrigger(attackType);
         
     }

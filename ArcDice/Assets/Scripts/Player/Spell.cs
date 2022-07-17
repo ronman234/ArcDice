@@ -5,14 +5,18 @@ using UnityEngine;
 public class Spell : MonoBehaviour
 {
     //public SpellElement element;
-    public string element;
+    public string spellElement;
     public SpellShape shape;
     public PlayerController playerController;
     public PlayerManager playerManager;
 
+
+    public List<SpellShape> spellShapes;
+    //private List<string> spellElements = new List<string> { "fire", "ice", "crystal", "wind", "holy", "unholy" };
+
     private float baseDamage;
 
-    public void CastSpell()
+    public void CastSpell(string element, SpellShape shape)
     {
 
         baseDamage = shape.damgeModifier * playerManager.playerLevel * 2;
@@ -33,7 +37,7 @@ public class Spell : MonoBehaviour
                     enemy.TakeDamage(baseDamage * 0.5f);
                     break;
                 case "wind":
-                    enemy.GetComponentInChildren<Rigidbody>().AddForce((enemy.transform.position - playerController.transform.position).normalized * playerManager.playerLevel + Vector3.up, ForceMode.Impulse);
+                    enemy.GetComponentInChildren<Rigidbody>().AddForce(((enemy.transform.position - playerController.transform.position).normalized * playerManager.playerLevel + Vector3.up) * 100, ForceMode.Impulse);
                     break;
                 case "holy":
                     
