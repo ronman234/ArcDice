@@ -490,6 +490,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6007390823770198224}
     m_Modifications:
+    - target: {fileID: 5345927755133973325, guid: 202ff545a701d1048a6f096a723db859, type: 3}
+      propertyPath: m_TagString
+      value: Hatch
+      objectReference: {fileID: 0}
     - target: {fileID: 6350228275227322873, guid: 202ff545a701d1048a6f096a723db859, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.75
@@ -557,6 +561,10 @@ PrefabInstance:
     - target: {fileID: 8659016497542346749, guid: 202ff545a701d1048a6f096a723db859, type: 3}
       propertyPath: m_Name
       value: DungeonHatch
+      objectReference: {fileID: 0}
+    - target: {fileID: 8659016497542346749, guid: 202ff545a701d1048a6f096a723db859, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 202ff545a701d1048a6f096a723db859, type: 3}

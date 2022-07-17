@@ -8,18 +8,23 @@ public class HUDManager : MonoBehaviour
 {
 
     public TextMeshProUGUI healthText;
+    public TextMeshProUGUI LevelText;
     string health = "Health ";
+    string Level = "Level ";
+
     public PlayerManager playerManager;
     public PlayerController playerController;
     public Image spellImage;
     public Sprite[] spelTypesImage;
     public Image element;
     public Sprite[] elementTypes;
+    public GameManager manager;
 
     // Start is called before the first frame update
     void Start()
     {
         healthText.text = health + playerManager.Health;
+        LevelText.text = Level + manager.currentPlayerLevel;
         GetElement();
         GetSpell();
     }
@@ -78,5 +83,10 @@ public class HUDManager : MonoBehaviour
     private void Update()
     {
         UpdateHealth();
+    }
+
+    public void UpdateLevel()
+    {
+       
     }
 }

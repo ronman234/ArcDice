@@ -12,6 +12,7 @@ public class Enemy : PoolableObject
     public Rigidbody rb;
     public bool isBoss;
     private GameObject Player;
+    public GameManager gameManager;
 
     public virtual void OnEnable()
     {
@@ -22,6 +23,13 @@ public class Enemy : PoolableObject
         collision = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
         Player = enemyMovement.Player.gameObject;
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        Debug.Log(gameManager);
+    }
+
+    private void Awake()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
     }
 
     public override void OnDisable()
@@ -45,7 +53,10 @@ public class Enemy : PoolableObject
         Agent.stoppingDistance = EnemyScriptableObject.StoppingDistance;
         isBoss = EnemyScriptableObject.Boss;
 
+        
         Health = EnemyScriptableObject.Health;
+        if (isBoss)
+            Health = Health * gameManager.currentPlayerLevel;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -59,6 +70,7 @@ public class Enemy : PoolableObject
         if(Health <= 0)
         {
             //TODO Die
+            Debug.Log(Health);
             OnDeath();
         }
     }
@@ -66,15 +78,23 @@ public class Enemy : PoolableObject
     public void TakeDamage(float damage)
     {
         Health -= damage;
-        Animator.SetTrigger("Damage");
     }
 
     private void OnDeath()
     {
         if (isBoss)
         {
-            Player.GetComponent<PlayerManager>().playerLevel++;
-            Debug.Log(GetComponent<PlayerManager>().playerLevel);
+            //Debug.Log("Here");
+            Animator.SetTrigger("Death");
+            rb.freezeRotation = true;
+            gameManager.HatchOn();
+            Destroy(gameObject, 4.0f);
+            this.enabled = false;
+            
+            //Player.GetComponent<PlayerManager>().playerLevel++;
+            //Debug.Log(GetComponent<PlayerManager>().playerLevel);
+            return;
+            
         }
             
         Animator.SetTrigger("Death");
