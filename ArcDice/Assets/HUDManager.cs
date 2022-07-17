@@ -34,22 +34,22 @@ public class HUDManager : MonoBehaviour
         Debug.Log(playerController.GetComponent<Spell>().spellElement);
         switch (playerController.GetComponent<Spell>().spellElement)
         {
-            case "Fire":
+            case "fire":
                 element.sprite = elementTypes[0];
                 break;
-            case "Ice":
+            case "ice":
                 element.sprite = elementTypes[1];
                 break;
-            case "Crystal":
+            case "crystal":
                 element.sprite = elementTypes[2];
                 break;
-            case "Wind":
+            case "wind":
                 element.sprite = elementTypes[3];
                 break;
-            case "Holy":
+            case "holy":
                 element.sprite = elementTypes[4];
                 break;
-            case "Unholy":
+            case "unholy":
                 element.sprite = elementTypes[5];
                 break;
         }
