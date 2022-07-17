@@ -11,6 +11,7 @@ public class SpellShape : ScriptableObject
     public float spreadAngle;
     public float angleBetweenRays;
     public float heightAbovePlayerPivot = 0.1f;
+    public float damgeModifier;
 
     public IEnumerable<Enemy> GetEnemiesHit(GameObject player)
     {
@@ -19,6 +20,11 @@ public class SpellShape : ScriptableObject
         foreach (Vector3 direction in RaysToCast(player))
         {
             Physics.Raycast(origin, direction, out RaycastHit hitInfo, range, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
+            Debug.DrawRay(origin, direction * range, Color.blue, 5f);
+            if (hitInfo.transform == null)
+            {
+                continue;
+            }
             if (hitInfo.transform.TryGetComponent<Enemy>(out Enemy enemy))
             {
                 yield return enemy;
@@ -36,6 +42,7 @@ public class SpellShape : ScriptableObject
             Quaternion rot = Quaternion.AngleAxis(angle, Vector3.up);
             yield return rot * center;
             yield return Quaternion.Inverse(rot) * center;
+            
         }
     }
 

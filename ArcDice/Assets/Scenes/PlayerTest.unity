@@ -302,9 +302,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429cb18a3153dcd409f22f92c8a0b79f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  element: {fileID: 0}
-  shape: {fileID: 11400000, guid: f4c1bf863e7a4440db1f9f0ce39e8c35, type: 2}
+  element: wind
+  shape: {fileID: 11400000, guid: 10c8caa6ab0664010a7260a433005208, type: 2}
   playerController: {fileID: 1652899651}
+  playerManager: {fileID: 1652899658}
+--- !u!114 &1652899658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1202665622006458959, guid: 1c552aae90d31b44487a08803508f563, type: 3}
+  m_PrefabInstance: {fileID: 1004045522}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297723047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04000f8ff23fdac4484f442ad17d1c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1911580790
 GameObject:
   m_ObjectHideFlags: 0

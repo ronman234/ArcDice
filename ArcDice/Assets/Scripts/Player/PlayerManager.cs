@@ -34,7 +34,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         playerHealth -= damage;
     }
