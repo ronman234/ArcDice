@@ -7,6 +7,8 @@ public class EnemySpawner : MonoBehaviour
 {
     public Transform Player;
     public int NumberOfEnemiesToSpawn = 5;
+    public bool isBoss = false;
+    public bool CanSpawn = true;
     public float SpawnDelay = 1f;
     public List<Enemy> EnemyPrefabs = new List<Enemy>();
     public SpawnMethod EnemySpawnMethod = SpawnMethod.RoundRobin;
@@ -17,15 +19,24 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        
+        if (isBoss)
+        {
+            NumberOfEnemiesToSpawn = 1;
+            return;
+        }
+        NumberOfEnemiesToSpawn = NumberOfEnemiesToSpawn * Player.gameObject.GetComponent<PlayerManager>().playerLevel;
         //Debug.Log(SpawnPosition.position);
     }
 
     public void SpawnCall()
     {
-        Player = GameObject.FindGameObjectWithTag("Player").transform;
-        SpawnPosition = transform;
-        StartCoroutine(StartPool());
+        if (CanSpawn) 
+        { 
+            Player = GameObject.FindGameObjectWithTag("Player").transform;
+            SpawnPosition = transform;
+            StartCoroutine(StartPool());
+        }
+        
     }
 
     private IEnumerator StartPool()

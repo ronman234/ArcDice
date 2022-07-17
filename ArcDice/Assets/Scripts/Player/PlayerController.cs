@@ -107,6 +107,11 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetTrigger("Death");
     }
+
+    public void DoDamage()
+    {
+        animator.SetTrigger("Damage");
+    }
     
     public void UpdateAttack(string AttackName)
     {

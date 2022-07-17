@@ -126,10 +126,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1776552057501814823, guid: 1c552aae90d31b44487a08803508f563, type: 3}
-  NumberOfEnemiesToSpawn: 5
+  NumberOfEnemiesToSpawn: 1
   SpawnDelay: 1
   EnemyPrefabs:
-  - {fileID: -9091546359614334504, guid: 9a8c2edde17398146982eee38a54d811, type: 3}
+  - {fileID: -9091546359614334504, guid: d12a4826d1954bf46aa44a18e44bc405, type: 3}
   EnemySpawnMethod: 0
   SpawnPosition: {fileID: 0}
 --- !u!114 &8737801805331864775

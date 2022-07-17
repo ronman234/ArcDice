@@ -51,13 +51,10 @@ public class PlayerManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             TakeDamage(1);
-        }
-        else
-        {
-            return;
+            playerController.DoDamage();
         }
     }
 }

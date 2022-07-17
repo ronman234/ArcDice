@@ -45,9 +45,7 @@ public class Enemy : PoolableObject
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
-            TakeDamage(2);
-        else
-            return;
+            Animator.SetTrigger("Attack");
     }
 
     private void Update()
@@ -62,6 +60,7 @@ public class Enemy : PoolableObject
     public void TakeDamage(float damage)
     {
         Health -= damage;
+        Animator.SetTrigger("Damage");
     }
 
     private void OnDeath()
