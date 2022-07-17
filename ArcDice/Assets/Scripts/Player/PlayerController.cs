@@ -19,12 +19,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private string attackType = "Bolt";
 
-    [SerializeField]
-    private GameObject pauseMenu;
 
     private void Awake()
     {
-
         rigidBody = GetComponentInChildren<Rigidbody>();
         playerInput = new PlayerControls();
         animator = GetComponentInChildren<Animator>();
@@ -35,11 +32,13 @@ public class PlayerController : MonoBehaviour
         playerInput.Default.Attack.started += DoAttack;
         playerInput.Default.Heal.started += DoHeal;
         playerInput.Default.Dash.started += DoDash;
-        playerInput.Default.Pause.started += DoPause;
     }
     private void OnDisable()
     {
         playerInput.Disable();
+        playerInput.Default.Attack.started += DoAttack;
+        playerInput.Default.Heal.started += DoHeal;
+        playerInput.Default.Dash.started += DoDash;
     }
 
     private void Update()
@@ -102,11 +101,6 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetTrigger("Heal");
     }
-    private void DoPause(InputAction.CallbackContext obj)
-    {
-        pauseMenu.SetActive(true);
-    }
-
     public void DoDeath()
     {
         animator.SetTrigger("Death");
