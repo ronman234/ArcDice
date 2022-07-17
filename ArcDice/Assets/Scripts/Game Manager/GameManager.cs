@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
     public void HatchOn()
     {
         Debug.Log("Here PLease");
+        UpdatePlayerLevel();
         hatch.gameObject.GetComponent<Collider>().enabled = true;
         pauseMenu.SetActive(true);
         resumeMenu.SetActive(false);
