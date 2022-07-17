@@ -8,8 +8,6 @@ public class GameManager : MonoBehaviour
     public static string generatorLevel = "PlayerTest 1";
     public static string uiLevel = "UI";
 
-    public int numberOfRooms;
-
     public LevelGenerator levelGenerator;
     public PlayerManager playerManager;
 
