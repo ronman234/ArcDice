@@ -42,12 +42,12 @@ public class Spell : MonoBehaviour
                     enemy.GetComponentInChildren<Rigidbody>().AddForce(((enemy.transform.position - playerController.transform.position).normalized * playerManager.playerLevel + Vector3.up) * 10, ForceMode.Impulse);
                     break;
                 case "holy":
-                    
+                    StartCoroutine(healOverTime(playerManager, 1, 5));
                     break;
                 case "unholy":
                     if (enemy.Health <= 0)
                     {
-                        playerManager.TakeDamage(-baseDamage);
+                        playerManager.TakeDamage(-1);
                     }
 
                     break;
