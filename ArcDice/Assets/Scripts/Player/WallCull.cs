@@ -46,7 +46,6 @@ public class WallCull : MonoBehaviour
             }
 
             Debug.DrawRay(cameraObj.transform.position, direction * distance);
-            Debug.Log($"Hit object: {hit.collider.gameObject.name}");
 
             MeshRenderer mesh = hit.collider.GetComponent<MeshRenderer>();
             if (!affectedMeshes.ContainsKey(mesh))
@@ -59,7 +58,6 @@ public class WallCull : MonoBehaviour
             if (Physics.Raycast(rayTwo, out hit, distance - hit.distance, layerMask, QueryTriggerInteraction.Ignore))
             {
                 Debug.DrawRay(cameraObj.transform.position, direction * distance);
-                Debug.Log($"Hit object: {hit.collider.gameObject.name}");
 
                 mesh = hit.collider.GetComponent<MeshRenderer>();
                 if (!affectedMeshes.ContainsKey(mesh))
