@@ -33,8 +33,11 @@ public class GameManager : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
+    }
 
-        
+    private void Start()
+    {
+        playerManager.Health += 5;
     }
 
     public void UpdatePlayerLevel()
