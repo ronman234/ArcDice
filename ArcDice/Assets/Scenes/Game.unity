@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -429,6 +429,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1202665622006458959, guid: 1c552aae90d31b44487a08803508f563, type: 3}
+      propertyPath: hud
+      value: 
+      objectReference: {fileID: 1270711959}
     - target: {fileID: 1202665622006458959, guid: 1c552aae90d31b44487a08803508f563, type: 3}
       propertyPath: pauseMenu
       value: 
@@ -4655,9 +4659,9 @@ RectTransform:
   m_Father: {fileID: 1509648270}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 159, y: -623.59094}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -197, y: 93.40906}
   m_SizeDelta: {x: 381.33334, y: 186.81818}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1376689303
@@ -5077,9 +5081,9 @@ RectTransform:
   m_Father: {fileID: 1509648270}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 161, y: -97}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -195, y: -97}
   m_SizeDelta: {x: 388.33334, y: 186.81818}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1503661016
@@ -6920,10 +6924,10 @@ RectTransform:
   m_Father: {fileID: 1376689302}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5977553, y: 0}
-  m_AnchorMax: {x: 1, y: 0.67888325}
-  m_AnchoredPosition: {x: -0.7000122, y: 0.9000015}
-  m_SizeDelta: {x: 163.66666, y: -72.6875}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -77.20001, y: 64.4}
+  m_SizeDelta: {x: 316.66666, y: 54.3125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1939550049
 MonoBehaviour:
