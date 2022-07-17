@@ -86,6 +86,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 15d273cc96b374e78ba49610d23c87bf, type: 2}
   - {fileID: 11400000, guid: ebcfd5b130ad64ea78219a8d3f54435d, type: 2}
   - {fileID: 11400000, guid: 866adc797016242b29be3bac5df80ca6, type: 2}
+  dieFaces:
+  - {fileID: 2100000, guid: 73b497936d00446888cd664f18f032cf, type: 2}
+  - {fileID: 2100000, guid: cdf1ec99682944f3984de86db0ca2ac1, type: 2}
+  - {fileID: 2100000, guid: 3f6d3f7fdf3de43a787d50989aa4b51a, type: 2}
+  - {fileID: 2100000, guid: 6dd7e50f09d3f4543a5c3c2648c5fb9a, type: 2}
+  - {fileID: 2100000, guid: 8bf08a5a281e04e0bb5bca2a6b075357, type: 2}
+  - {fileID: 2100000, guid: ea7e14dbc68fe45f194e9c4eebf3782d, type: 2}
+  die: {fileID: 6716651703823486413, guid: c719e288a492649fd8b4ffc330752507, type: 3}
+  rollTime: 12
   AttackTrigger: 
 --- !u!54 &8485724003117247053
 Rigidbody:

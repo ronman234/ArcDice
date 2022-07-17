@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -10,9 +12,13 @@ public class PlayerController : MonoBehaviour
 
     public List<SpellShape> spellShapes;
     public List<SpellElement> spellElements;
+    public List<Material> dieFaces;
+    public GameObject die;
+    public float rollTime;
 
     private PlayerControls playerInput;
     private Rigidbody rigidBody;
+    public PlayerManager playerManager;
 
     //private float horizontalMovement;
     //private float verticalMovement;
@@ -20,10 +26,18 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
     private Animator animator;
     public string AttackTrigger;
+    private bool canAttack;
+    private bool canHeal;
+    [NonSerialized] public UnityEvent afterRoll;
+
+    public GameObject spells;
 
 
     private void Awake()
     {
+        afterRoll = new UnityEvent();
+        canAttack = false;
+        canHeal = false;
         rigidBody = GetComponentInChildren<Rigidbody>();
         playerInput = new PlayerControls();
         animator = GetComponentInChildren<Animator>();
@@ -35,8 +49,49 @@ public class PlayerController : MonoBehaviour
         spell.playerController = this;
         spell.playerManager = GetComponent<PlayerManager>();
 
+        //Create Die
+        GameObject dieSpawned = Instantiate(die, Vector3.up * 3, Quaternion.Euler(0, -90, 0));
+        FollowCam follow = dieSpawned.AddComponent<FollowCam>();
+        follow.followTarget = this;
+        follow.yaw = 0;
+        follow.followDistanceZ = 0;
+        follow.followDistanceY = 3f;
+        List<Transform> children = new List<Transform>(dieSpawned.GetComponentsInChildren<Transform>());
+        children.RemoveAt(0);
+        List<Material> availableFaces = new List<Material>(dieFaces);
+        Transform childToRemove = null;
+        foreach (Transform child in children)
+        {
+            if (child.name == "Side_3_low")
+            {
+                child.GetComponent<MeshRenderer>().materials = new Material[1] { availableFaces[spellElements.IndexOf(spell.element)] };
+                availableFaces.RemoveAt(spellElements.IndexOf(spell.element));
+                childToRemove = child;
+            }
+        }
+        children.Remove(childToRemove);
+
+        foreach (Transform child in children)
+        {
+            if (child.GetComponent<MeshRenderer>() == null)
+            {
+                continue;
+            }
+            int face = UnityEngine.Random.Range(0, availableFaces.Count);
+            child.GetComponent<MeshRenderer>().materials = new Material[1] { availableFaces[face] };
+            availableFaces.RemoveAt(face);
+        }
+
+        dieSpawned.GetComponent<Animator>().SetBool("D4", true);
+        dieSpawned.GetComponent<Animator>().SetTrigger(spell.shape.name);
+        afterRoll.AddListener(delegate { canAttack = true; });
+        afterRoll.AddListener(delegate { Destroy(dieSpawned); });
+
         AttackTrigger = GetComponent<Spell>().shape.animationTriggerName;
+
+        StartCoroutine(WaitForRoll());
     }
+
     private void OnEnable()
     {
         playerInput.Enable();
@@ -101,10 +156,14 @@ public class PlayerController : MonoBehaviour
 
     private void DoAttack(InputAction.CallbackContext obj)
     {
+        if (!canAttack)
+        {
+            return;
+        }
         animator.SetTrigger(GetComponent<Spell>().shape.animationTriggerName);
         GetComponent<Spell>().CastSpell();
         //animator.SetTrigger(GetComponent<Spell>().shape.animationTriggerName);
-        
+        StartCoroutine(AttackCooldown());
     }
     private void DoDash(InputAction.CallbackContext obj)
     {
@@ -113,7 +172,13 @@ public class PlayerController : MonoBehaviour
     }
     private void DoHeal(InputAction.CallbackContext obj)
     {
+        if (!canHeal)
+        {
+            return;
+        }
         animator.SetTrigger("Heal");
+        playerManager.TakeDamage(-2);
+        StartCoroutine(HealCooldown());
     }
     public void DoDeath()
     {
@@ -123,5 +188,26 @@ public class PlayerController : MonoBehaviour
     public void DoDamage()
     {
         animator.SetTrigger("Damage");
+    }
+
+    private IEnumerator AttackCooldown()
+    {
+        canAttack = false;
+        yield return new WaitForSeconds(0.5f);
+        canAttack = true;
+    }
+    private IEnumerator HealCooldown()
+    {
+        canHeal = false;
+        yield return new WaitForSeconds(3);
+        canHeal = true;
+    }
+
+    private IEnumerator WaitForRoll()
+    {
+        yield return new WaitForSeconds(rollTime);
+        canHeal = true;
+        spells.SetActive(true);
+        afterRoll.Invoke();
     }
 }

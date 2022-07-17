@@ -18,6 +18,10 @@ public class FALL : MonoBehaviour
     {
         targetY = transform.position.y;
         transform.position = new Vector3(transform.position.x, fallHeight, transform.position.z);
+        foreach (MeshRenderer meshRenderer in gameObject.GetComponentsInChildren<MeshRenderer>())
+        {
+            meshRenderer.enabled = false;
+        }
         StartCoroutine(StartRoll(doorPosition));
     }
 
@@ -41,6 +45,11 @@ public class FALL : MonoBehaviour
 
     IEnumerator Fall()
     {
+        foreach (MeshRenderer meshRenderer in gameObject.GetComponentsInChildren<MeshRenderer>())
+        {
+            meshRenderer.enabled = true;
+        }
+
         while (transform.position.y > targetY)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y - fallSpeed * Time.deltaTime, transform.position.z);
