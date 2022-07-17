@@ -6572,7 +6572,7 @@ MonoBehaviour:
   player: {fileID: 297723047}
   playerYOffset: 0
   rootRooms:
-  - {fileID: 2146187012878677770, guid: 41f7d2101794d7646a07659d49c8e264, type: 3}
+  - {fileID: 2146187012878677770, guid: 60318413b44ed894b966459fe7aa08c6, type: 3}
   specialRooms:
   - {fileID: 2146187012878677770, guid: 9510bfdb0447e004e8fe6394db57675e, type: 3}
   - {fileID: 2146187012878677770, guid: 9510bfdb0447e004e8fe6394db57675e, type: 3}
