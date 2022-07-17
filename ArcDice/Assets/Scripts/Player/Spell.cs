@@ -10,6 +10,12 @@ public class Spell : MonoBehaviour
     public SpellShape shape;
     public PlayerController playerController;
     public PlayerManager playerManager;
+    public GameManager gameManager;
+
+    private void Awake()
+    {
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
 
     //public List<SpellShape> spellShapes;
@@ -21,7 +27,7 @@ public class Spell : MonoBehaviour
     {
         DisplayParticleEffect();
 
-        baseDamage = shape.damgeModifier * playerManager.playerLevel * 2;
+        baseDamage = shape.damgeModifier * gameManager.currentPlayerLevel * 2;
 
         foreach (Enemy enemy in shape.GetEnemiesHit(playerController.gameObject))
         {
