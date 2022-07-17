@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6611159094490508749}
   - component: {fileID: 5839540585103290927}
   - component: {fileID: 7295038997850246643}
+  - component: {fileID: 3138940325788440478}
   m_Layer: 0
   m_Name: Stool
   m_TagString: Untagged
@@ -29,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,6 +54,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -95,3 +98,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.70702267, y: 0.5087637, z: 0.66221666}
   m_Center: {x: -0.009853646, y: -0.066009074, z: 0.0043900013}
+--- !u!114 &3138940325788440478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9092321195660511736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3d2315c31e01540ab805286187d1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navAgent: {fileID: 0}
