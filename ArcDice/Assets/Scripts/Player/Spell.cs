@@ -11,21 +11,20 @@ public class Spell : MonoBehaviour
     public PlayerManager playerManager;
 
 
-    public List<SpellShape> spellShapes;
+    //public List<SpellShape> spellShapes;
     //private List<string> spellElements = new List<string> { "fire", "ice", "crystal", "wind", "holy", "unholy" };
 
     private float baseDamage;
 
-    public void CastSpell(string element, SpellShape shape)
+    public void CastSpell()
     {
 
         baseDamage = shape.damgeModifier * playerManager.playerLevel * 2;
 
-        playerController.UpdateAttack(shape.animationTriggerName);
         foreach (Enemy enemy in shape.GetEnemiesHit(playerController.gameObject))
         {
             enemy.TakeDamage(baseDamage);
-            switch (element)
+            switch (spellElement)
             {
                 case "fire":
                     StartCoroutine(damageOverTime(enemy, baseDamage, 5));

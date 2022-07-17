@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     // Movement Settings
     public float moveSpeed = 5f;
 
+    public List<SpellShape> spellShapes;
+
     private PlayerControls playerInput;
     private Rigidbody rigidBody;
 
@@ -16,11 +18,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 movement;
     private Vector3 velocity;
     private Animator animator;
-    [SerializeField]
-    private string attackType = "Bolt";
-    [SerializeField]
-    private SpellShape spellShape;
-
 
 
     private void Awake()
@@ -28,6 +25,13 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponentInChildren<Rigidbody>();
         playerInput = new PlayerControls();
         animator = GetComponentInChildren<Animator>();
+
+        //Create Spell
+        Spell spell = gameObject.AddComponent<Spell>();
+        spell.spellElement = SpellCreator.RollElementType();
+        spell.shape = SpellCreator.RollAttackType(spellShapes);
+        spell.playerController = this;
+        spell.playerManager = GetComponent<PlayerManager>();
     }
     private void OnEnable()
     {
@@ -93,8 +97,8 @@ public class PlayerController : MonoBehaviour
 
     private void DoAttack(InputAction.CallbackContext obj)
     {
-        GetComponent<Spell>().CastSpell(SpellCreator.RollElementType(), SpellCreator.RollAttackType(GetComponent<Spell>().spellShapes));
-        animator.SetTrigger(attackType);
+        GetComponent<Spell>().CastSpell();
+        animator.SetTrigger(GetComponent<Spell>().shape.animationTriggerName);
         
     }
     private void DoDash(InputAction.CallbackContext obj)
@@ -115,10 +119,4 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetTrigger("Damage");
     }
-    
-    public void UpdateAttack(string AttackName)
-    {
-        attackType = AttackName;
-    }
-
 }
