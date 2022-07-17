@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "new - Spell Shape", menuName = "Spells/Spell Shape", order = 10)]
+[CreateAssetMenu(fileName = nameof(SpellShape), menuName = "Spells/Spell Shape", order = 10)]
 public class SpellShape : ScriptableObject
 {
     public string animationTriggerName;

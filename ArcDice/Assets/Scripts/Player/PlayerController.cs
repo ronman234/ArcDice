@@ -87,6 +87,8 @@ public class PlayerController : MonoBehaviour
 
     private void DoAttack(InputAction.CallbackContext obj)
     {
+        GetComponent<Spell>().CastSpell();
+        Debug.Log("?");
         animator.SetTrigger(attackType);
     }
     private void DoDash(InputAction.CallbackContext obj)
@@ -99,7 +101,7 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("Heal");
     }
     
-    private void UpdateAttack(string AttackName)
+    public void UpdateAttack(string AttackName)
     {
         attackType = AttackName;
     }
