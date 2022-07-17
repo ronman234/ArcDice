@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private PlayerControls playerInput;
     private Rigidbody rigidBody;
+    public PlayerManager playerManager;
 
     //private float horizontalMovement;
     //private float verticalMovement;
@@ -26,13 +27,17 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     public string AttackTrigger;
     private bool canAttack;
+    private bool canHeal;
     [NonSerialized] public UnityEvent afterRoll;
+
+    public GameObject spells;
 
 
     private void Awake()
     {
         afterRoll = new UnityEvent();
         canAttack = false;
+        canHeal = false;
         rigidBody = GetComponentInChildren<Rigidbody>();
         playerInput = new PlayerControls();
         animator = GetComponentInChildren<Animator>();
@@ -167,7 +172,13 @@ public class PlayerController : MonoBehaviour
     }
     private void DoHeal(InputAction.CallbackContext obj)
     {
+        if (!canHeal)
+        {
+            return;
+        }
         animator.SetTrigger("Heal");
+        playerManager.TakeDamage(-2);
+        StartCoroutine(HealCooldown());
     }
     public void DoDeath()
     {
@@ -185,10 +196,18 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         canAttack = true;
     }
+    private IEnumerator HealCooldown()
+    {
+        canHeal = false;
+        yield return new WaitForSeconds(3);
+        canHeal = true;
+    }
 
     private IEnumerator WaitForRoll()
     {
         yield return new WaitForSeconds(rollTime);
+        canHeal = true;
+        spells.SetActive(true);
         afterRoll.Invoke();
     }
 }
