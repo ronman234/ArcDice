@@ -9,6 +9,8 @@ public class Hatch : MonoBehaviour
     private void Awake()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        gameManager.hatch = this;
+        gameObject.GetComponent<Collider>().enabled = false;
     }
 
     private void OnCollisionEnter(Collision collision)
