@@ -322,11 +322,17 @@ MonoBehaviour:
   player: {fileID: 297723047}
   playerYOffset: 0
   rootRooms:
-  - {fileID: 2146187012878677770, guid: eac316a98853b99408b64e8d13b11116, type: 3}
-  specialRooms: []
-  basicRooms:
   - {fileID: 2146187012878677770, guid: 41f7d2101794d7646a07659d49c8e264, type: 3}
-  specialRoomProbability: 0
+  specialRooms:
+  - {fileID: 2146187012878677770, guid: 9510bfdb0447e004e8fe6394db57675e, type: 3}
+  - {fileID: 2146187012878677770, guid: 9510bfdb0447e004e8fe6394db57675e, type: 3}
+  basicRooms:
+  - {fileID: 2146187012878677770, guid: 696acb10d17519643a8bc832fdf4357b, type: 3}
+  - {fileID: 2146187012878677770, guid: 41f7d2101794d7646a07659d49c8e264, type: 3}
+  - {fileID: 2146187012878677770, guid: cdae35e2cf14d8a4f8a6a0fad89665d9, type: 3}
+  - {fileID: 2146187012878677770, guid: 4525f3883192ecc4091e5279eb91cabb, type: 3}
+  - {fileID: 2146187012878677770, guid: 302dac7f1ee577045b86f6b4edf8fee1, type: 3}
+  specialRoomProbability: 0.3
   numRooms: 15
 --- !u!4 &1911580792
 Transform:
