@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2265161749455241159}
   - component: {fileID: 7335724287613658380}
   - component: {fileID: 4866510153222022870}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tyled_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
