@@ -9,6 +9,9 @@ public class SelectCharacter : MonoBehaviour
     int counter = 0;
     int nextCharacter;
 
+    [SerializeField]
+    string GameLevel = "PlayerTest1";
+
     private void OnEnable()
     {
         counter = PlayerPrefs.GetInt("CharacterSelected");
@@ -45,6 +48,6 @@ public class SelectCharacter : MonoBehaviour
         //characterArray[PlayerPrefs.GetInt("CharacterSelected")].SetActive(false);
         PlayerPrefs.SetInt("CharacterSelected", counter);
         PlayerPrefs.Save();
-        SceneManager.LoadScene("PlayerTest", LoadSceneMode.Single);
+        SceneManager.LoadScene(GameLevel, LoadSceneMode.Single);
     }
 }

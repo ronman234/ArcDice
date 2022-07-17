@@ -42,13 +42,11 @@ public class Enemy : PoolableObject
         Health = EnemyScriptableObject.Health;
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //        TakeDamage(2);
-    //    else
-    //        return;
-    //}
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+            Animator.SetTrigger("Attack");
+    }
 
     private void Update()
     {
@@ -59,10 +57,10 @@ public class Enemy : PoolableObject
         }
     }
 
-    public bool TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         Health -= damage;
-        return Health <= 0;
+        Animator.SetTrigger("Damage");
     }
 
     private void OnDeath()
