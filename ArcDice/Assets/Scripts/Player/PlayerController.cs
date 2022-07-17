@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 movement;
     private Vector3 velocity;
     private Animator animator;
+    public string AttackTrigger;
 
 
     private void Awake()
@@ -32,6 +33,8 @@ public class PlayerController : MonoBehaviour
         spell.shape = SpellCreator.RollAttackType(spellShapes);
         spell.playerController = this;
         spell.playerManager = GetComponent<PlayerManager>();
+
+        AttackTrigger = GetComponent<Spell>().shape.animationTriggerName;
     }
     private void OnEnable()
     {
@@ -98,6 +101,7 @@ public class PlayerController : MonoBehaviour
     private void DoAttack(InputAction.CallbackContext obj)
     {
         GetComponent<Spell>().CastSpell();
+        
         animator.SetTrigger(GetComponent<Spell>().shape.animationTriggerName);
         
     }

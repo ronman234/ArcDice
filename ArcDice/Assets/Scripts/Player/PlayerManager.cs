@@ -13,10 +13,17 @@ public class PlayerManager : MonoBehaviour
     public float maxPlayerHealth;
     [SerializeField]
     private float playerHealth;
+    public float Health
+    {
+        get { return playerHealth; }
+        set { }
+    }
     public int playerLevel;
 
     private PlayerController playerController;
     private Collider collider;
+
+    public HUDManager hud;
 
     private void Awake()
     {
@@ -39,6 +46,7 @@ public class PlayerManager : MonoBehaviour
     public void TakeDamage(float damage)
     {
         playerHealth -= damage;
+        hud.UpdateHealth();
     }
 
     private void OnDeath()
@@ -62,4 +70,6 @@ public class PlayerManager : MonoBehaviour
             playerController.DoDamage();
         }
     }
+
+    
 }
