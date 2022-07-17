@@ -4871,7 +4871,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Next LEvel ->
+  m_text: Next Level -> Find Hatch
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 65c7b12b555a33e4c88bfed0b3e53135, type: 2}
   m_sharedMaterial: {fileID: -251144975914496451, guid: 65c7b12b555a33e4c88bfed0b3e53135, type: 2}
