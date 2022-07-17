@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu]
 public class Door : MonoBehaviour
 {
     public GameObject ClosedState;
@@ -41,13 +42,11 @@ public class Door : MonoBehaviour
 
     void HandleCollision()
     {
-        if (ClosedState.activeSelf)
+        if (ClosedState.activeInHierarchy)
         {
             SetOpen();
-            pairedDoor.SetOpen();
+            pairedDoor.gameObject.SetActive(false);
             pairedDoor.OwningRoom.SetActive(true);
-            pairedDoor.OwningRoom.GetComponent<EnemySpawner>().SpawnPosition = pairedDoor.OwningRoom.transform;
-            pairedDoor.OwningRoom.GetComponent<EnemySpawner>().SpawnCall();
         }
     }
 
