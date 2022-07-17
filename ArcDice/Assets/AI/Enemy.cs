@@ -13,6 +13,7 @@ public class Enemy : PoolableObject
     public bool isBoss;
     private GameObject Player;
     public GameManager gameManager;
+    private AudioManager audioManager;
 
     public virtual void OnEnable()
     {
@@ -30,6 +31,13 @@ public class Enemy : PoolableObject
     private void Awake()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+
+        if (isBoss)
+        {
+            audioManager.PlayAudio(audioManager.bossMusic);
+        }
+        
     }
 
     public override void OnDisable()
