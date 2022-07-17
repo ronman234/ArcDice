@@ -24,13 +24,31 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Mouse",
-                    "type": "Value",
-                    "id": "afc369cf-6754-4ef4-a045-cf278cb84dde",
-                    "expectedControlType": "Vector2",
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "2b899fed-11ed-4c15-879a-ceddac520dbc",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "5dd3f713-bf8d-4749-ab35-b99cc79ea24c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Heal",
+                    "type": "Button",
+                    "id": "f46fc603-2dc6-41a7-bb23-f778d4fd825c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -102,12 +120,34 @@
                 },
                 {
                     "name": "",
-                    "id": "3f7b5a46-e4ea-4161-8f04-3f340c0aa2e1",
-                    "path": "<Mouse>/position",
+                    "id": "3610defb-4339-4446-afa7-667383d52cc4",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Mouse",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "117aaa10-2697-441d-9ed6-790e3830c0e0",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cac90ada-1dae-4f5b-b1c4-8c55970def80",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Heal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

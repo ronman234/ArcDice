@@ -16,9 +16,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 movement;
     private Vector3 velocity;
     private Animator animator;
+    [SerializeField]
+    private string attackType = "Bolt";
 
     private void Awake()
     {
+
         rigidBody = GetComponentInChildren<Rigidbody>();
         playerInput = new PlayerControls();
         animator = GetComponentInChildren<Animator>();
@@ -26,6 +29,9 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         playerInput.Enable();
+        playerInput.Default.Attack.started += DoAttack;
+        playerInput.Default.Heal.started += DoHeal;
+        playerInput.Default.Dash.started += DoDash;
     }
     private void OnDisable()
     {
@@ -78,4 +84,24 @@ public class PlayerController : MonoBehaviour
     {
         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
     }
+
+    private void DoAttack(InputAction.CallbackContext obj)
+    {
+        animator.SetTrigger(attackType);
+    }
+    private void DoDash(InputAction.CallbackContext obj)
+    {
+        
+        animator.SetTrigger("Dash");
+    }
+    private void DoHeal(InputAction.CallbackContext obj)
+    {
+        animator.SetTrigger("Heal");
+    }
+    
+    private void UpdateAttack(string AttackName)
+    {
+        attackType = AttackName;
+    }
+
 }

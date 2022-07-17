@@ -46,13 +46,31 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Mouse"",
-                    ""type"": ""Value"",
-                    ""id"": ""afc369cf-6754-4ef4-a045-cf278cb84dde"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""2b899fed-11ed-4c15-879a-ceddac520dbc"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""5dd3f713-bf8d-4749-ab35-b99cc79ea24c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Heal"",
+                    ""type"": ""Button"",
+                    ""id"": ""f46fc603-2dc6-41a7-bb23-f778d4fd825c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -124,12 +142,34 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3f7b5a46-e4ea-4161-8f04-3f340c0aa2e1"",
-                    ""path"": ""<Mouse>/position"",
+                    ""id"": ""3610defb-4339-4446-afa7-667383d52cc4"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Mouse"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""117aaa10-2697-441d-9ed6-790e3830c0e0"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cac90ada-1dae-4f5b-b1c4-8c55970def80"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Heal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -142,7 +182,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Default = asset.FindActionMap("Default", throwIfNotFound: true);
         m_Default_HorizontalMove = m_Default.FindAction("HorizontalMove", throwIfNotFound: true);
         m_Default_VerticalMove = m_Default.FindAction("VerticalMove", throwIfNotFound: true);
-        m_Default_Mouse = m_Default.FindAction("Mouse", throwIfNotFound: true);
+        m_Default_Attack = m_Default.FindAction("Attack", throwIfNotFound: true);
+        m_Default_Dash = m_Default.FindAction("Dash", throwIfNotFound: true);
+        m_Default_Heal = m_Default.FindAction("Heal", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -204,14 +246,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IDefaultActions m_DefaultActionsCallbackInterface;
     private readonly InputAction m_Default_HorizontalMove;
     private readonly InputAction m_Default_VerticalMove;
-    private readonly InputAction m_Default_Mouse;
+    private readonly InputAction m_Default_Attack;
+    private readonly InputAction m_Default_Dash;
+    private readonly InputAction m_Default_Heal;
     public struct DefaultActions
     {
         private @PlayerControls m_Wrapper;
         public DefaultActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @HorizontalMove => m_Wrapper.m_Default_HorizontalMove;
         public InputAction @VerticalMove => m_Wrapper.m_Default_VerticalMove;
-        public InputAction @Mouse => m_Wrapper.m_Default_Mouse;
+        public InputAction @Attack => m_Wrapper.m_Default_Attack;
+        public InputAction @Dash => m_Wrapper.m_Default_Dash;
+        public InputAction @Heal => m_Wrapper.m_Default_Heal;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -227,9 +273,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @VerticalMove.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnVerticalMove;
                 @VerticalMove.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnVerticalMove;
                 @VerticalMove.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnVerticalMove;
-                @Mouse.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMouse;
-                @Mouse.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMouse;
-                @Mouse.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMouse;
+                @Attack.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnAttack;
+                @Dash.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnDash;
+                @Heal.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnHeal;
+                @Heal.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnHeal;
+                @Heal.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnHeal;
             }
             m_Wrapper.m_DefaultActionsCallbackInterface = instance;
             if (instance != null)
@@ -240,9 +292,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @VerticalMove.started += instance.OnVerticalMove;
                 @VerticalMove.performed += instance.OnVerticalMove;
                 @VerticalMove.canceled += instance.OnVerticalMove;
-                @Mouse.started += instance.OnMouse;
-                @Mouse.performed += instance.OnMouse;
-                @Mouse.canceled += instance.OnMouse;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
+                @Heal.started += instance.OnHeal;
+                @Heal.performed += instance.OnHeal;
+                @Heal.canceled += instance.OnHeal;
             }
         }
     }
@@ -251,6 +309,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnHorizontalMove(InputAction.CallbackContext context);
         void OnVerticalMove(InputAction.CallbackContext context);
-        void OnMouse(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
+        void OnHeal(InputAction.CallbackContext context);
     }
 }
