@@ -23,6 +23,7 @@ public class HUDManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        manager = FindObjectOfType<GameManager>();
         healthText.text = health + playerManager.Health;
         LevelText.text = Level + manager.currentPlayerLevel;
         GetElement();
