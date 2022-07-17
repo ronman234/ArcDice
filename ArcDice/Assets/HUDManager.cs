@@ -12,9 +12,9 @@ public class HUDManager : MonoBehaviour
     public PlayerManager playerManager;
     public PlayerController playerController;
     public Image spellImage;
-    public Image[] spelTypesImage;
+    public Sprite[] spelTypesImage;
     public Image element;
-    public Image[] elementTypes;
+    public Sprite[] elementTypes;
 
     // Start is called before the first frame update
     void Start()
@@ -26,47 +26,47 @@ public class HUDManager : MonoBehaviour
 
     public void GetElement()
     {
+        Debug.Log(playerController.GetComponent<Spell>().spellElement);
         switch (playerController.GetComponent<Spell>().spellElement)
         {
-            case "fire":
-                element = elementTypes[0];
+            case "Fire":
+                element.sprite = elementTypes[0];
                 break;
-            case "ice":
-                element = elementTypes[1];
+            case "Ice":
+                element.sprite = elementTypes[1];
                 break;
-            case "crystal":
-                element = elementTypes[2];
+            case "Crystal":
+                element.sprite = elementTypes[2];
                 break;
-            case "wind":
-                element = elementTypes[3];
+            case "Wind":
+                element.sprite = elementTypes[3];
                 break;
-            case "holy":
-                element = elementTypes[4];
+            case "Holy":
+                element.sprite = elementTypes[4];
                 break;
-            case "unholy":
-                element = elementTypes[5];
+            case "Unholy":
+                element.sprite = elementTypes[5];
                 break;
-
         }
     }
 
     public void GetSpell()
     {
+        Debug.Log(playerController.AttackTrigger);
         switch (playerController.AttackTrigger)
         {
             case "Blade":
-                spellImage = spelTypesImage[0];
+                spellImage.sprite = spelTypesImage[0];
                 break;
             case "Bolt":
-                spellImage = spelTypesImage[0];
+                spellImage.sprite = spelTypesImage[1];
                 break;
             case "Wave":
-                spellImage = spelTypesImage[0];
+                spellImage.sprite = spelTypesImage[2];
                 break;
             case "Cone":
-                spellImage = spelTypesImage[0];
-                break;           
-
+                spellImage.sprite = spelTypesImage[3];
+                break;
         }
     }
 
