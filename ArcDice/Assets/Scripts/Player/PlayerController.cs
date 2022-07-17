@@ -90,6 +90,8 @@ public class PlayerController : MonoBehaviour
 
     private void DoAttack(InputAction.CallbackContext obj)
     {
+        GetComponent<Spell>().CastSpell();
+        Debug.Log("?");
         animator.SetTrigger(attackType);
     }
     private void DoDash(InputAction.CallbackContext obj)
