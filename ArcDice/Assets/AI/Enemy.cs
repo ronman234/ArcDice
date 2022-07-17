@@ -71,8 +71,12 @@ public class Enemy : PoolableObject
 
     private void OnDeath()
     {
-        if(isBoss)
+        if (isBoss)
+        {
             Player.GetComponent<PlayerManager>().playerLevel++;
+            Debug.Log(GetComponent<PlayerManager>().playerLevel);
+        }
+            
         Animator.SetTrigger("Death");
         rb.freezeRotation = true;
         Destroy(gameObject, 4.0f);
