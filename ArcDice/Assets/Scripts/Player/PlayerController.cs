@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     private bool canHeal;
     [NonSerialized] public UnityEvent afterRoll;
 
+    public GameObject spells;
+
 
     private void Awake()
     {
@@ -205,6 +207,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(rollTime);
         canHeal = true;
+        spells.SetActive(true);
         afterRoll.Invoke();
     }
 }
