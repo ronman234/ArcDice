@@ -74,7 +74,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  spellShapes: []
+  spellShapes:
+  - {fileID: 11400000, guid: 7f4f3e76b46404f67997db6a6d5171d9, type: 2}
+  - {fileID: 11400000, guid: f4c1bf863e7a4440db1f9f0ce39e8c35, type: 2}
+  - {fileID: 11400000, guid: d6370e3816bd34c5d9f2bf40926c5919, type: 2}
+  - {fileID: 11400000, guid: 10c8caa6ab0664010a7260a433005208, type: 2}
+  spellElements:
+  - {fileID: 11400000, guid: 76391456a18334fa490011e03c586afd, type: 2}
+  - {fileID: 11400000, guid: 6fa78e1007f56426f84f7412a66737af, type: 2}
+  - {fileID: 11400000, guid: 6520904630d0547b8af36529e39e7e94, type: 2}
+  - {fileID: 11400000, guid: 15d273cc96b374e78ba49610d23c87bf, type: 2}
+  - {fileID: 11400000, guid: ebcfd5b130ad64ea78219a8d3f54435d, type: 2}
+  - {fileID: 11400000, guid: 866adc797016242b29be3bac5df80ca6, type: 2}
+  AttackTrigger: 
 --- !u!54 &8485724003117247053
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -192,6 +204,7 @@ MonoBehaviour:
   maxPlayerHealth: 10
   playerHealth: 0
   playerLevel: 1
+  hud: {fileID: 0}
 --- !u!114 &1439829745806660980
 MonoBehaviour:
   m_ObjectHideFlags: 0
