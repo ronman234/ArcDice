@@ -7,14 +7,35 @@ public class FALL : MonoBehaviour
 {
     public float fallSpeed;
     public float fallHeight;
+    public GameObject die;
+    public List<Material> dieFaces;
+    public float rollTime;
     float targetY;
     public UnityEvent afterFall;
 
     // Start is called before the first frame update
-    public void StartFall()
+    public void StartFall(Vector3 doorPosition)
     {
         targetY = transform.position.y;
         transform.position = new Vector3(transform.position.x, fallHeight, transform.position.z);
+        StartCoroutine(StartRoll(doorPosition));
+    }
+
+    IEnumerator StartRoll(Vector3 doorPosition)
+    {
+        GameObject dieSpawned = Instantiate(die, doorPosition + Vector3.up * 4, Quaternion.identity);
+        foreach (Transform child in dieSpawned.transform)
+        {
+            if (child.GetComponent<MeshRenderer>() == null)
+            {
+                continue;
+            }
+            int face = Random.Range(0, dieFaces.Count);
+            child.GetComponent<MeshRenderer>().materials = new Material[1] { dieFaces[face] };
+            dieFaces.RemoveAt(face);
+        }
+        yield return new WaitForSeconds(rollTime);
+        afterFall.AddListener(delegate { Destroy(dieSpawned); });
         StartCoroutine(Fall());
     }
 

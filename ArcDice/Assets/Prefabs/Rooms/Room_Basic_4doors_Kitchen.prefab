@@ -216,6 +216,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 10
   fallHeight: 20
+  die: {fileID: 6716651703823486413, guid: c719e288a492649fd8b4ffc330752507, type: 3}
+  dieFaces:
+  - {fileID: 2100000, guid: 73b497936d00446888cd664f18f032cf, type: 2}
+  - {fileID: 2100000, guid: cdf1ec99682944f3984de86db0ca2ac1, type: 2}
+  - {fileID: 2100000, guid: 3f6d3f7fdf3de43a787d50989aa4b51a, type: 2}
+  - {fileID: 2100000, guid: 6dd7e50f09d3f4543a5c3c2648c5fb9a, type: 2}
+  - {fileID: 2100000, guid: 8bf08a5a281e04e0bb5bca2a6b075357, type: 2}
+  - {fileID: 2100000, guid: ea7e14dbc68fe45f194e9c4eebf3782d, type: 2}
+  rollTime: 5
+  afterFall:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2864848589777129014
 GameObject:
   m_ObjectHideFlags: 0
