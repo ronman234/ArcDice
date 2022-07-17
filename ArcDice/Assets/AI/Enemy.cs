@@ -1,16 +1,22 @@
 using UnityEngine.AI;
+using UnityEngine;
 
 public class Enemy : PoolableObject
 {
     public NavMeshAgent Agent;
     public EnemyScriptableObject EnemyScriptableObject;
     public float Health = 100;
-    public EnemyMovement EnemyMovement;
+    public EnemyMovement enemyMovement;
+    public Animator Animator;
+    public Collider collision;
 
     public virtual void OnEnable()
     {
         SetUpAgentFromConfiguration();
         Agent.enabled = true;
+        Animator = GetComponent<Animator>();
+        enemyMovement = GetComponent<EnemyMovement>();
+        collision = GetComponent<Collider>();
     }
 
     public override void OnDisable()
@@ -34,5 +40,36 @@ public class Enemy : PoolableObject
         Agent.stoppingDistance = EnemyScriptableObject.StoppingDistance;
 
         Health = EnemyScriptableObject.Health;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+            TakeDamage(2);
+        else
+            return;
+    }
+
+    private void Update()
+    {
+        if(Health <= 0)
+        {
+            //TODO Die
+            OnDeath();
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        Health -= damage;
+    }
+
+    private void OnDeath()
+    {
+        
+        Animator.SetTrigger("Death");
+        
+        Destroy(gameObject, 4.0f);
+        this.enabled = false;
     }
 }

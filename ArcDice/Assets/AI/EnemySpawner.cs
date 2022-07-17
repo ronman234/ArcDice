@@ -88,8 +88,8 @@ public class EnemySpawner : MonoBehaviour
         if (poolableObject != null)
         {
             Enemy enemy = poolableObject.GetComponent<Enemy>();
-            enemy.EnemyMovement.Player = Player;
-            enemy.EnemyMovement.StartChasing();
+            enemy.enemyMovement.Player = Player;
+            enemy.enemyMovement.StartChasing();
             //int VertexIndex = Random.Range(0, Triangulation.vertices.Length);
 
             //NavMeshHit Hit;
