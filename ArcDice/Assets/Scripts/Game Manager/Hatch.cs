@@ -9,9 +9,10 @@ public class Hatch : MonoBehaviour
 
     private void Awake()
     {
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        //gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        //gameManager = FindObjectOfType<GameManager>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-        gameManager.hatch = this;
+        GameManager.Instance.hatch = this;
         gameObject.GetComponent<Collider>().enabled = false;
 
         audioManager.PlayAudio(audioManager.menuMusic);
@@ -23,7 +24,7 @@ public class Hatch : MonoBehaviour
         {
             Debug.Log("Player");
             //gameManager.UpdatePlayerLevel();
-            gameManager.LoadScene(GameManager.generatorLevel);
+            GameManager.Instance.LoadScene(GameManager.generatorLevel);
         }
     }
 }

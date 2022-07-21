@@ -5,6 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager instance;
+
+    public static GameManager Instance
+    {
+        get
+        {
+            if (instance is null)
+                Debug.Log("No Game manager");
+            return instance;
+        }
+    }
+
     public static string generatorLevel = "Game";
     public static string uiLevel = "Main Menu";
 
@@ -15,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     public Hatch hatch;
     public GameObject pauseMenu;
+    public GameObject pauseManager;
     public GameObject resumeMenu;
     public GameObject endScreen;
 
@@ -23,21 +36,34 @@ public class GameManager : MonoBehaviour
     {
         //hatch = GameObject.FindGameObjectWithTag("Hatch").GetComponent<Hatch>();
         //hatch.enabled = false;
-        int instancesInScene = FindObjectsOfType<GameManager>().Length;
-
-        if (instancesInScene > 1)
-        {
-            Destroy(this.gameObject);
-        }
+        if (instance == null)
+            instance = this;
         else
         {
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
+            return;
         }
+        DontDestroyOnLoad(gameObject);
+
+        pauseManager = GameObject.FindGameObjectWithTag("PauseManager");
+        resumeMenu = pauseMenu.GetComponent<PauseManager>().pauseMenu;
+        endScreen = pauseMenu.GetComponent<PauseManager>().levelEnd;
+        pauseMenu = pauseMenu.GetComponent<PauseManager>().pauseObject;
+        pauseManager.GetComponent<PauseManager>().hudManager.UpdateLevel();
+        levelGenerator = GameObject.FindGameObjectWithTag("LevelGen").GetComponent<LevelGenerator>();
+        playerManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
     }
 
     private void Start()
     {
         playerManager.Health += 5;
+        pauseManager = GameObject.FindGameObjectWithTag("PauseManager");
+        resumeMenu = pauseMenu.GetComponent<PauseManager>().pauseMenu;
+        endScreen = pauseMenu.GetComponent<PauseManager>().levelEnd;
+        pauseMenu = pauseMenu.GetComponent<PauseManager>().pauseObject;
+        pauseManager.GetComponent<PauseManager>().hudManager.UpdateLevel();
+        levelGenerator = GameObject.FindGameObjectWithTag("LevelGen").GetComponent<LevelGenerator>();
+        playerManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
     }
 
     public void UpdatePlayerLevel()

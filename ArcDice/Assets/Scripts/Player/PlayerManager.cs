@@ -32,8 +32,12 @@ public class PlayerManager : MonoBehaviour
         playerHealth = maxPlayerHealth;
         playerController = GetComponent<PlayerController>();
         collider = GetComponent<Collider>();
+        
     }
-
+    private void Start()
+    {
+        GameManager.Instance.playerManager = this;
+    }
     private void Update()
     {
         if(playerHealth <= 0)

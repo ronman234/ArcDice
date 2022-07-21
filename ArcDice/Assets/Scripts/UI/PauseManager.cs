@@ -6,12 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject pauseObject;
+
+    public GameObject pauseObject;
+    public GameObject pauseMenu;
+    public GameObject levelEnd;
+
 
     private PlayerControls playerInput;
     int characterSelected = 0;
     public PlayerManager playerManager;
+
+    public GameManager gameManager;
+    public HUDManager hudManager;
 
     [SerializeField]
     string MainMenu = "UI1";
@@ -20,8 +26,21 @@ public class PauseManager : MonoBehaviour
     {
         characterSelected = PlayerPrefs.GetInt("CharacterSelected");
         playerInput = new PlayerControls();
+        //GameManager.Instance.pauseManager = gameObject;
+        //GameManager.Instance.pauseMenu = pauseObject;
+        //GameManager.Instance.resumeMenu = pauseMenu;
+        //GameManager.Instance.endScreen = levelEnd;
+        //gameManager = FindObjectOfType<GameManager>();
+
     }
 
+    private void Start()
+    {
+        GameManager.Instance.pauseManager = gameObject;
+        GameManager.Instance.pauseMenu = pauseObject;
+        GameManager.Instance.resumeMenu = pauseMenu;
+        GameManager.Instance.endScreen = levelEnd;
+    }
     private void OnEnable()
     {
         playerInput.Enable();

@@ -24,13 +24,13 @@ public class Enemy : PoolableObject
         collision = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
         Player = enemyMovement.Player.gameObject;
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        Debug.Log(gameManager);
+        //gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        //Debug.Log(gameManager);
     }
 
     private void Awake()
     {
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        //gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
 
         if (isBoss)
@@ -64,7 +64,7 @@ public class Enemy : PoolableObject
         
         Health = EnemyScriptableObject.Health;
         if (isBoss)
-            Health = Health * gameManager.currentPlayerLevel;
+            Health = Health * GameManager.Instance.currentPlayerLevel;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -78,7 +78,6 @@ public class Enemy : PoolableObject
         if(Health <= 0)
         {
             //TODO Die
-            Debug.Log(Health);
             OnDeath();
         }
     }
@@ -95,7 +94,7 @@ public class Enemy : PoolableObject
             //Debug.Log("Here");
             Animator.SetTrigger("Death");
             rb.freezeRotation = true;
-            gameManager.HatchOn();
+            GameManager.Instance.HatchOn();
             Destroy(gameObject, 4.0f);
             this.enabled = false;
             

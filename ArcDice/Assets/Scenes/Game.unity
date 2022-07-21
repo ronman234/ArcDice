@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 176177111}
   m_Layer: 5
   m_Name: Level Up
-  m_TagString: Untagged
+  m_TagString: LevelMenu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 280066970}
   m_Layer: 0
   m_Name: LevelGenerator
-  m_TagString: Untagged
+  m_TagString: LevelGen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2790,7 +2790,7 @@ GameObject:
   - component: {fileID: 853225015}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: PauseManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2830,7 +2830,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseObject: {fileID: 1563730090}
+  pauseMenu: {fileID: 1024719724}
+  levelEnd: {fileID: 176177110}
   playerManager: {fileID: 165724967}
+  gameManager: {fileID: 0}
+  hudManager: {fileID: 1270711959}
   MainMenu: Main Menu
 --- !u!114 &853225016
 MonoBehaviour:
@@ -3383,7 +3387,7 @@ GameObject:
   - component: {fileID: 1024719726}
   m_Layer: 5
   m_Name: Main Menu
-  m_TagString: Untagged
+  m_TagString: PauseMenu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7095,6 +7099,7 @@ MonoBehaviour:
   currentPlayerLevel: 1
   hatch: {fileID: 0}
   pauseMenu: {fileID: 1563730090}
+  pauseManager: {fileID: 0}
   resumeMenu: {fileID: 1024719724}
   endScreen: {fileID: 176177110}
 --- !u!4 &1845070258

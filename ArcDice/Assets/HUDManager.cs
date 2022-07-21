@@ -25,11 +25,10 @@ public class HUDManager : MonoBehaviour
     {
         manager = FindObjectOfType<GameManager>();
         healthText.text = health + playerManager.Health;
-        LevelText.text = Level + manager.currentPlayerLevel;
+        LevelText.text = Level + GameManager.Instance.currentPlayerLevel;
         GetElement();
         GetSpell();
     }
-
     public void GetElement()
     {
         Debug.Log(playerController.GetComponent<Spell>().spellElement);
@@ -88,6 +87,6 @@ public class HUDManager : MonoBehaviour
 
     public void UpdateLevel()
     {
-       
+        LevelText.text = Level + GameManager.Instance.currentPlayerLevel;
     }
 }
