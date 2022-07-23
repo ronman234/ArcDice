@@ -132,6 +132,8 @@ public class PlayerController : MonoBehaviour
 
         velocity.y = rigidBody.velocity.y;
 
+        
+
     }
 
     private void FixedUpdate()

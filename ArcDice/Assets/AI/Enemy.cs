@@ -11,9 +11,11 @@ public class Enemy : PoolableObject
     public Collider collision;
     public Rigidbody rb;
     public bool isBoss;
+    private bool isDead;
     private GameObject Player;
     public GameManager gameManager;
     private AudioManager audioManager;
+    private PlayerManager playerManager;
 
     public virtual void OnEnable()
     {
@@ -24,7 +26,8 @@ public class Enemy : PoolableObject
         collision = GetComponent<Collider>();
         rb = GetComponent<Rigidbody>();
         Player = enemyMovement.Player.gameObject;
-        //gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        
+        
         //Debug.Log(gameManager);
     }
 
@@ -32,6 +35,8 @@ public class Enemy : PoolableObject
     {
         //gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        playerManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         if (isBoss)
         {
@@ -70,7 +75,26 @@ public class Enemy : PoolableObject
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
+        {
+            
             Animator.SetTrigger("Attack");
+
+            if (Health > 1)
+            {
+                if (isBoss)
+                {
+                    playerManager.TakeDamage(2 + (gameManager.currentPlayerLevel * 2));
+                    Debug.Log("Player took " + (1 + 2 + (gameManager.currentPlayerLevel * 2)) + " damage.");
+                }
+                else
+                {
+                    playerManager.TakeDamage(1 + (gameManager.currentPlayerLevel / 2));
+                    Debug.Log("Player took " + (1 + (gameManager.currentPlayerLevel / 2)) + " damage.");
+                }
+            }
+        }
+
+        
     }
 
     private void Update()
@@ -89,24 +113,27 @@ public class Enemy : PoolableObject
 
     private void OnDeath()
     {
-        if (isBoss)
+        if (!isDead)
         {
-            //Debug.Log("Here");
+            isDead = true;
+            if (isBoss)
+            {
+                Animator.SetTrigger("Death");
+                rb.freezeRotation = true;
+                GameManager.Instance.HatchOn();
+                Destroy(gameObject, 4.0f);
+                this.enabled = false;
+
+                //Player.GetComponent<PlayerManager>().playerLevel++;
+                //Debug.Log(GetComponent<PlayerManager>().playerLevel);
+                return;
+            }
+
             Animator.SetTrigger("Death");
             rb.freezeRotation = true;
-            GameManager.Instance.HatchOn();
             Destroy(gameObject, 4.0f);
             this.enabled = false;
-            
-            //Player.GetComponent<PlayerManager>().playerLevel++;
-            //Debug.Log(GetComponent<PlayerManager>().playerLevel);
-            return;
-            
         }
-            
-        Animator.SetTrigger("Death");
-        rb.freezeRotation = true;
-        Destroy(gameObject, 4.0f);
-        this.enabled = false;
     }
+
 }

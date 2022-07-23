@@ -40,7 +40,13 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
-        if(playerHealth <= 0)
+        if(playerHealth <= 0) 
+        {
+            OnDeath();
+            return;
+        }
+
+        if (gameObject.transform.position.y <= -10f) //Check if player fell out of the map
         {
             OnDeath();
             return;
@@ -49,11 +55,14 @@ public class PlayerManager : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        playerHealth -= damage;
-        hud.UpdateHealth();
+        if (!tgm)
+        {
+            playerHealth -= damage;
+            hud.UpdateHealth();
+        }
     }
 
-    private void OnDeath()
+    public void OnDeath()
     {
         if (!tgm)
         {
@@ -66,14 +75,12 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            TakeDamage(1);
-            playerController.DoDamage();
-        }
-    }
-
-    
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Enemy")
+    //    {
+    //        TakeDamage(1);
+    //        playerController.DoDamage();
+    //    }
+    //}
 }
